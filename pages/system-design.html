@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 
         .navbar {
             background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -102,7 +103,7 @@
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .section-title {
@@ -140,7 +141,7 @@
 
         .doc-link:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .component-grid {
@@ -172,7 +173,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin: 2rem 0;
         }
 
@@ -266,12 +267,16 @@
         }
     </style>
 </head>
+
 <body>
     <header class="navbar">
         <div class="container nav-flex">
             <div class="logo">
-                <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                <span class="brand">Glove Guide</span>
+                <a href="../index.html"
+                    style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                    <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                    <span class="brand">GloveGuide</span>
+                </a>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -292,13 +297,15 @@
         <div class="content-section">
             <div class="doc-link-box">
                 <p>For a detailed technical report and analysis, please refer to our comprehensive documentation:</p>
-                <a href="https://drive.google.com/file/d/1vhEsAlTU161bzLwdcQ8EdqqY2YrobZBX/view?usp=sharing" target="_blank" class="doc-link">View Full Documentation</a>
+                <a href="https://drive.google.com/file/d/1vhEsAlTU161bzLwdcQ8EdqqY2YrobZBX/view?usp=sharing"
+                    target="_blank" class="doc-link">View Full Documentation</a>
             </div>
         </div>
 
         <div class="content-section">
             <h2 class="section-title">High Level Design</h2>
-            <p style="margin-bottom: 1.5rem;">The Glove Guide system integrates hardware and software components into a wearable navigation aid. Its high-level architecture is summarized below:</p>
+            <p style="margin-bottom: 1.5rem;">The Glove Guide system integrates hardware and software components into a
+                wearable navigation aid. Its high-level architecture is summarized below:</p>
         </div>
 
         <div class="content-section">
@@ -336,7 +343,8 @@
                 </div>
                 <div class="component-card">
                     <h3>Custom Mobile Application</h3>
-                    <p>Interfaces with Google Maps, extracts navigation instructions, and transmits them via Bluetooth.</p>
+                    <p>Interfaces with Google Maps, extracts navigation instructions, and transmits them via Bluetooth.
+                    </p>
                 </div>
                 <div class="component-card">
                     <h3>Bluetooth Communication Protocol</h3>
@@ -344,7 +352,8 @@
                 </div>
                 <div class="component-card">
                     <h3>ESP32 Firmware</h3>
-                    <p>Decodes Bluetooth signals and activates the appropriate glove actuator to deliver haptic feedback.</p>
+                    <p>Decodes Bluetooth signals and activates the appropriate glove actuator to deliver haptic
+                        feedback.</p>
                 </div>
             </div>
         </div>
@@ -352,7 +361,11 @@
         <div class="content-section">
             <h2 class="section-title">System Architecture</h2>
             <img src="../images/system-architecture.jpg" alt="System architecture diagram" class="architecture-image">
-            <p class="image-caption">Complete system architecture overview</p>
+            <p class="image-caption">High-level system architecture</p>
+
+            <img src="../images/system-architecture-2.png" alt="Detailed system architecture" class="architecture-image"
+                style="margin-top: 3rem;">
+            <p class="image-caption">Detailed component architecture</p>
         </div>
 
         <div class="content-section">
@@ -368,21 +381,35 @@
 
         <div class="content-section">
             <h2 class="section-title">Justifying Feasibility</h2>
-            <p style="margin-bottom: 1.5rem;">We believe the proposed Glove Guide system is feasible to implement within the scope of the semester project. The required functionality can be achieved by combining accessible hardware components with well-documented software platforms, making the system both practical and achievable within the given timeframe.</p>
-            
+            <p style="margin-bottom: 1.5rem;">We believe the proposed Glove Guide system is feasible to implement within
+                the scope of the semester project. The required functionality can be achieved by combining accessible
+                hardware components with well-documented software platforms, making the system both practical and
+                achievable within the given timeframe.</p>
+
             <div class="feasibility-box">
                 <h3>System Components and Development Effort</h3>
-                <p>The system relies on low-cost, readily available building blocks including hardware (gloves, ESP32 microcontroller, vibration actuators, portable battery, and a simple driver circuit) and software components (mobile application, Bluetooth protocol, and ESP32 firmware). None of these components require custom hardware manufacturing or complex low-level development, which keeps the overall effort manageable.</p>
+                <p>The system relies on low-cost, readily available building blocks including hardware (gloves, ESP32
+                    microcontroller, vibration actuators, portable battery, and a simple driver circuit) and software
+                    components (mobile application, Bluetooth protocol, and ESP32 firmware). None of these components
+                    require custom hardware manufacturing or complex low-level development, which keeps the overall
+                    effort manageable.</p>
             </div>
 
             <div class="feasibility-box">
                 <h3>Team Skills and Alignment</h3>
-                <p>Our team of three members has a strong foundation in software development, with proficiency in Python and Java. These skills align directly with the project's software demands including mobile application development, Bluetooth protocol implementation, and firmware development for ESP32. Although our background is primarily software-oriented, the hardware integration tasks are straightforward and well-supported by tutorials and documentation.</p>
+                <p>Our team of three members has a strong foundation in software development, with proficiency in Python
+                    and Java. These skills align directly with the project's software demands including mobile
+                    application development, Bluetooth protocol implementation, and firmware development for ESP32.
+                    Although our background is primarily software-oriented, the hardware integration tasks are
+                    straightforward and well-supported by tutorials and documentation.</p>
             </div>
 
             <div class="feasibility-box">
                 <h3>Time Effort and Work Distribution</h3>
-                <p>The estimated workload is consistent with the course guideline of 20–30 hours per group member, distributed across mobile application development (≈25 hours), Bluetooth protocol and firmware (≈20 hours), hardware integration and testing (≈20 hours), and system integration and group testing (≈10 hours per member).</p>
+                <p>The estimated workload is consistent with the course guideline of 20–30 hours per group member,
+                    distributed across mobile application development (≈25 hours), Bluetooth protocol and firmware (≈20
+                    hours), hardware integration and testing (≈20 hours), and system integration and group testing (≈10
+                    hours per member).</p>
             </div>
         </div>
     </main>
@@ -394,4 +421,5 @@
         </div>
     </footer>
 </body>
+
 </html>

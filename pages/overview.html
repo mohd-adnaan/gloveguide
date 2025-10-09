@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 
         .navbar {
             background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -102,7 +103,7 @@
             background: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         .section-title {
@@ -145,7 +146,7 @@
             max-width: 100%;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin: 2rem 0;
         }
 
@@ -195,7 +196,7 @@
             margin-bottom: 0.8rem;
             background: white;
             border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .comparison strong {
@@ -255,12 +256,16 @@
         }
     </style>
 </head>
+
 <body>
     <header class="navbar">
         <div class="container nav-flex">
             <div class="logo">
-                <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                <span class="brand">Glove Guide</span>
+                <a href="../index.html"
+                    style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                    <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                    <span class="brand">GloveGuide</span>
+                </a>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -281,24 +286,32 @@
         <div class="content-section">
             <h2 class="section-title">Proposal: Glove Guide</h2>
             <div class="proposal-text">
-                <p>In response to these issues, we propose <strong>Glove Guide</strong>, a system using haptic notifications to signal left and right turns. This approach allows users to navigate without consulting a phone, thereby enabling them to maintain attention on the road.</p>
+                <p>In response to these issues, we propose <strong>Glove Guide</strong>, a system using haptic
+                    notifications to signal left and right turns. This approach allows users to navigate without
+                    consulting a phone, thereby enabling them to maintain attention on the road.</p>
             </div>
         </div>
 
         <div class="content-section">
             <h2 class="section-title">Personas</h2>
-            <p style="margin-bottom: 1.5rem;">We identified five categories of users who could benefit from this system:</p>
-            
+            <p style="margin-bottom: 1.5rem;">We identified five categories of users who could benefit from this system:
+            </p>
+
             <ul class="personas-list">
-                <li><strong>1. High-Frequency Users</strong> – Individuals who cycle regularly, whether for commuting or leisure.</li>
-                <li><strong>2. Special Care Users</strong> – Individuals requiring additional navigational support, such as older adults or those with visual impairments.</li>
-                <li><strong>3. Economical Users</strong> – Individuals who avoid alternative transportation due to cost, sustainability concerns, or traffic avoidance.</li>
-                <li><strong>4. High-Skilled Users</strong> – Experienced cyclists seeking efficient and safe navigation.</li>
-                <li><strong>5. Non-Cyclists</strong> – Pedestrians and runners, whose lower travel speeds do not eliminate the risk of distraction.</li>
+                <li><strong>1. High-Frequency Users</strong> – Individuals who cycle regularly, whether for commuting or
+                    leisure.</li>
+                <li><strong>2. Special Care Users</strong> – Individuals requiring additional navigational support, such
+                    as older adults or those with visual impairments.</li>
+                <li><strong>3. Economical Users</strong> – Individuals who avoid alternative transportation due to cost,
+                    sustainability concerns, or traffic avoidance.</li>
+                <li><strong>4. High-Skilled Users</strong> – Experienced cyclists seeking efficient and safe navigation.
+                </li>
+                <li><strong>5. Non-Cyclists</strong> – Pedestrians and runners, whose lower travel speeds do not
+                    eliminate the risk of distraction.</li>
             </ul>
 
             <img src="../images/high_frequency user_group.png" alt="User Groups Analysis" class="persona-image">
-            
+
             <p class="image-caption">The following photos show our work process and intermediate results.</p>
         </div>
 
@@ -307,16 +320,21 @@
             <div class="use-case">
                 <p>To illustrate functionality, consider the following example:</p>
                 <ul>
-                    <li><strong>Alice</strong>, a newcomer to the city, plans to visit multiple destinations by bicycle.</li>
-                    <li>Before departing, she selects her first destination on her smartphone, then stores the device securely in her pocket.</li>
+                    <li><strong>Alice</strong>, a newcomer to the city, plans to visit multiple destinations by bicycle.
+                    </li>
+                    <li>Before departing, she selects her first destination on her smartphone, then stores the device
+                        securely in her pocket.</li>
                     <li>Equipped with a helmet and Glove Guide, she begins her ride.</li>
-                    <li>Upon approaching an intersection, Alice maintains her standard safety routine—checking for vehicles and pedestrians—while receiving haptic feedback from her gloves.
+                    <li>Upon approaching an intersection, Alice maintains her standard safety routine—checking for
+                        vehicles and pedestrians—while receiving haptic feedback from her gloves.
                         <ul>
-                            <li>A vibration on the left glove indicates a left turn, which she executes after ensuring the road is clear.</li>
+                            <li>A vibration on the left glove indicates a left turn, which she executes after ensuring
+                                the road is clear.</li>
                             <li>The vibration ceases once the turn is complete.</li>
                         </ul>
                     </li>
-                    <li>Throughout her trip, Alice receives turn-by-turn haptic cues without needing to consult her phone, allowing her to remain attentive to her surroundings while navigating efficiently.</li>
+                    <li>Throughout her trip, Alice receives turn-by-turn haptic cues without needing to consult her
+                        phone, allowing her to remain attentive to her surroundings while navigating efficiently.</li>
                 </ul>
             </div>
         </div>
@@ -325,15 +343,20 @@
             <h2 class="section-title">Comparison with Related Products</h2>
             <div class="comparison">
                 <ul>
-                    <li><strong>Google Maps:</strong> Requires frequent visual attention, distracting users from their environment.</li>
+                    <li><strong>Google Maps:</strong> Requires frequent visual attention, distracting users from their
+                        environment.</li>
                     <li><strong>Audio Guidance:</strong> Instructions are often obscured by environmental noise.</li>
-                    <li><strong>Earphones:</strong> Improve audibility but block external sounds such as horns, while also being prohibited for cyclists in some jurisdictions.</li>
-                    <li><strong>Handlebar-Mounted Smartphone Holders:</strong> Reduce the difficulty of accessing phones but still require visual attention, perpetuating distraction risks.</li>
+                    <li><strong>Earphones:</strong> Improve audibility but block external sounds such as horns, while
+                        also being prohibited for cyclists in some jurisdictions.</li>
+                    <li><strong>Handlebar-Mounted Smartphone Holders:</strong> Reduce the difficulty of accessing phones
+                        but still require visual attention, perpetuating distraction risks.</li>
                 </ul>
             </div>
 
             <div class="highlight-box">
-                <p><strong>In contrast, Glove Guide provides a discreet and intuitive haptic navigation system that minimizes distraction, preserves environmental awareness, and enhances safety for a wide range of urban road users.</strong></p>
+                <p><strong>In contrast, Glove Guide provides a discreet and intuitive haptic navigation system that
+                        minimizes distraction, preserves environmental awareness, and enhances safety for a wide range
+                        of urban road users.</strong></p>
             </div>
         </div>
     </main>
@@ -345,4 +368,5 @@
         </div>
     </footer>
 </body>
+
 </html>
