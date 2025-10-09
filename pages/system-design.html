@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design - Glove Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3498db;
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 0;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .doc-link-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .doc-link-box p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .doc-link {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .doc-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .component-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .component-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .component-card h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .component-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .architecture-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .workflow-list {
+            counter-reset: workflow-counter;
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .workflow-list li {
+            counter-increment: workflow-counter;
+            padding: 1rem 1rem 1rem 3rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .workflow-list li::before {
+            content: counter(workflow-counter);
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .feasibility-box {
+            background: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin: 2rem 0;
+        }
+
+        .feasibility-box h3 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">
+                <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                <span class="brand">Glove Guide</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="overview.html">Overview</a></li>
+                    <li><a href="system-design.html" class="active">System Design</a></li>
+                    <li><a href="ethics.html">Ethics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>System Design</h1>
+    </div>
+
+    <main class="container">
+        <div class="content-section">
+            <div class="doc-link-box">
+                <p>For a detailed technical report and analysis, please refer to our comprehensive documentation:</p>
+                <a href="https://drive.google.com/file/d/1vhEsAlTU161bzLwdcQ8EdqqY2YrobZBX/view?usp=sharing" target="_blank" class="doc-link">View Full Documentation</a>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">High Level Design</h2>
+            <p style="margin-bottom: 1.5rem;">The Glove Guide system integrates hardware and software components into a wearable navigation aid. Its high-level architecture is summarized below:</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Hardware Components</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Gloves</h3>
+                    <p>Base wearable platform; optionally waterproof/insulated.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Vibration Actuators</h3>
+                    <p>Provide left/right haptic feedback cues.</p>
+                </div>
+                <div class="component-card">
+                    <h3>ESP32 Microcontroller</h3>
+                    <p>Central processing unit; handles Bluetooth communication and actuator control.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Battery + Connector</h3>
+                    <p>Portable power supply for ESP32 and actuators.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Driver Circuit</h3>
+                    <p>Converts microcontroller signals to drive actuators effectively.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Software Components</h2>
+            <div class="component-grid">
+                <div class="component-card">
+                    <h3>Google Maps API</h3>
+                    <p>Supplies real-time navigation and turn-by-turn directions.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Custom Mobile Application</h3>
+                    <p>Interfaces with Google Maps, extracts navigation instructions, and transmits them via Bluetooth.</p>
+                </div>
+                <div class="component-card">
+                    <h3>Bluetooth Communication Protocol</h3>
+                    <p>Ensures reliable data transfer between smartphone and ESP32.</p>
+                </div>
+                <div class="component-card">
+                    <h3>ESP32 Firmware</h3>
+                    <p>Decodes Bluetooth signals and activates the appropriate glove actuator to deliver haptic feedback.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">System Architecture</h2>
+            <img src="../images/system-architecture.jpg" alt="System architecture diagram" class="architecture-image">
+            <p class="image-caption">Complete system architecture overview</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Integration Flow</h2>
+            <ol class="workflow-list">
+                <li>The user sets a route in the smartphone app.</li>
+                <li>App retrieves directions from Google Maps API.</li>
+                <li>Instructions (e.g., "turn left") are encoded and sent over Bluetooth.</li>
+                <li>ESP32 receives and decodes signals.</li>
+                <li>Corresponding glove actuator vibrates, guiding the user safely without visual distraction.</li>
+            </ol>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Justifying Feasibility</h2>
+            <p style="margin-bottom: 1.5rem;">We believe the proposed Glove Guide system is feasible to implement within the scope of the semester project. The required functionality can be achieved by combining accessible hardware components with well-documented software platforms, making the system both practical and achievable within the given timeframe.</p>
+            
+            <div class="feasibility-box">
+                <h3>System Components and Development Effort</h3>
+                <p>The system relies on low-cost, readily available building blocks including hardware (gloves, ESP32 microcontroller, vibration actuators, portable battery, and a simple driver circuit) and software components (mobile application, Bluetooth protocol, and ESP32 firmware). None of these components require custom hardware manufacturing or complex low-level development, which keeps the overall effort manageable.</p>
+            </div>
+
+            <div class="feasibility-box">
+                <h3>Team Skills and Alignment</h3>
+                <p>Our team of three members has a strong foundation in software development, with proficiency in Python and Java. These skills align directly with the project's software demands including mobile application development, Bluetooth protocol implementation, and firmware development for ESP32. Although our background is primarily software-oriented, the hardware integration tasks are straightforward and well-supported by tutorials and documentation.</p>
+            </div>
+
+            <div class="feasibility-box">
+                <h3>Time Effort and Work Distribution</h3>
+                <p>The estimated workload is consistent with the course guideline of 20–30 hours per group member, distributed across mobile application development (≈25 hours), Bluetooth protocol and firmware (≈20 hours), hardware integration and testing (≈20 hours), and system integration and group testing (≈10 hours per member).</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview - Glove Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #3498db;
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 0;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .proposal-text {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            border-left: 4px solid #3498db;
+        }
+
+        .personas-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .personas-list li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+
+        .personas-list strong {
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+
+        .persona-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .image-caption {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .use-case {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin: 2rem 0;
+        }
+
+        .use-case ul {
+            margin-left: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .use-case li {
+            margin-bottom: 0.8rem;
+        }
+
+        .use-case ul ul {
+            margin-top: 0.5rem;
+        }
+
+        .comparison {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .comparison ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .comparison li {
+            padding: 1rem;
+            margin-bottom: 0.8rem;
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .comparison strong {
+            color: #e74c3c;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .highlight-box p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">
+                <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                <span class="brand">Glove Guide</span>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="overview.html" class="active">Overview</a></li>
+                    <li><a href="system-design.html">System Design</a></li>
+                    <li><a href="ethics.html">Ethics</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Overview</h1>
+    </div>
+
+    <main class="container">
+        <div class="content-section">
+            <h2 class="section-title">Proposal: Glove Guide</h2>
+            <div class="proposal-text">
+                <p>In response to these issues, we propose <strong>Glove Guide</strong>, a system using haptic notifications to signal left and right turns. This approach allows users to navigate without consulting a phone, thereby enabling them to maintain attention on the road.</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Personas</h2>
+            <p style="margin-bottom: 1.5rem;">We identified five categories of users who could benefit from this system:</p>
+            
+            <ul class="personas-list">
+                <li><strong>1. High-Frequency Users</strong> – Individuals who cycle regularly, whether for commuting or leisure.</li>
+                <li><strong>2. Special Care Users</strong> – Individuals requiring additional navigational support, such as older adults or those with visual impairments.</li>
+                <li><strong>3. Economical Users</strong> – Individuals who avoid alternative transportation due to cost, sustainability concerns, or traffic avoidance.</li>
+                <li><strong>4. High-Skilled Users</strong> – Experienced cyclists seeking efficient and safe navigation.</li>
+                <li><strong>5. Non-Cyclists</strong> – Pedestrians and runners, whose lower travel speeds do not eliminate the risk of distraction.</li>
+            </ul>
+
+            <img src="../images/high_frequency user_group.png" alt="User Groups Analysis" class="persona-image">
+            
+            <p class="image-caption">The following photos show our work process and intermediate results.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Use-Case Scenario</h2>
+            <div class="use-case">
+                <p>To illustrate functionality, consider the following example:</p>
+                <ul>
+                    <li><strong>Alice</strong>, a newcomer to the city, plans to visit multiple destinations by bicycle.</li>
+                    <li>Before departing, she selects her first destination on her smartphone, then stores the device securely in her pocket.</li>
+                    <li>Equipped with a helmet and Glove Guide, she begins her ride.</li>
+                    <li>Upon approaching an intersection, Alice maintains her standard safety routine—checking for vehicles and pedestrians—while receiving haptic feedback from her gloves.
+                        <ul>
+                            <li>A vibration on the left glove indicates a left turn, which she executes after ensuring the road is clear.</li>
+                            <li>The vibration ceases once the turn is complete.</li>
+                        </ul>
+                    </li>
+                    <li>Throughout her trip, Alice receives turn-by-turn haptic cues without needing to consult her phone, allowing her to remain attentive to her surroundings while navigating efficiently.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Comparison with Related Products</h2>
+            <div class="comparison">
+                <ul>
+                    <li><strong>Google Maps:</strong> Requires frequent visual attention, distracting users from their environment.</li>
+                    <li><strong>Audio Guidance:</strong> Instructions are often obscured by environmental noise.</li>
+                    <li><strong>Earphones:</strong> Improve audibility but block external sounds such as horns, while also being prohibited for cyclists in some jurisdictions.</li>
+                    <li><strong>Handlebar-Mounted Smartphone Holders:</strong> Reduce the difficulty of accessing phones but still require visual attention, perpetuating distraction risks.</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <p><strong>In contrast, Glove Guide provides a discreet and intuitive haptic navigation system that minimizes distraction, preserves environmental awareness, and enhances safety for a wide range of urban road users.</strong></p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -32,6 +32,11 @@
 - **Risks:** Same as regular cycling.
 - **Mitigation:** Only experienced riders participate.
 
+## Detailed Documentation
+
+For detailed information about our observations, research, and proposal, please check our comprehensive report:
+[Observations and Proposal Document](https://drive.google.com/file/d/1vhEsAlTU161bzLwdcQ8EdqqY2YrobZBX/view?usp=sharing)
+
 ## Images
 
 The images below are included from the `images/` folder to illustrate the user scenario and system architecture. They use relative paths so they'll render on GitHub and local previews.
