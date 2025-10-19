@@ -25,14 +25,18 @@
         .navbar {
             background: white;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
+        .top-nav {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 0;
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -62,22 +66,66 @@
             color: #2c3e50;
         }
 
-        .nav-links {
+        /* Super Navigation */
+        .super-nav {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0;
+            justify-content: center;
         }
 
-        .nav-links a {
+        .super-nav-item {
+            position: relative;
+        }
+
+        .super-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .super-nav-link:hover,
+        .super-nav-link.active {
+            color: #667eea;
+            background: #f8f9fa;
+            border-bottom-color: #667eea;
+        }
+
+        /* Sub Navigation */
+        .sub-nav {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+            display: none;
+        }
+
+        .sub-nav.active {
+            display: block;
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
             text-decoration: none;
             color: #555;
             font-weight: 500;
+            padding: 0.5rem 1.25rem;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #3498db;
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: #667eea;
         }
 
         main {
@@ -185,8 +233,8 @@
 
         .image-card img {
             width: 100%;
-            height: 500px;
-            object-fit: cover;
+            height: 300px;
+            object-fit: contain;
             background: #f8f9fa;
         }
 
@@ -257,8 +305,18 @@
                 gap: 1rem;
             }
 
-            .nav-links {
-                gap: 1rem;
+            .super-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .super-nav-link {
+                text-align: center;
+            }
+
+            .sub-nav-links {
+                flex-direction: column;
+                align-items: center;
             }
 
             .hero h1 {
@@ -278,21 +336,48 @@
 
 <body>
     <header class="navbar">
-        <div class="container nav-flex">
-            <div class="logo">
-                <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                    <img src="images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                    <span class="brand">GloveGuide</span>
-                </a>
+        <div class="top-nav">
+            <div class="container nav-flex">
+                <div class="logo">
+                    <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <img src="images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">GloveGuide</span>
+                    </a>
+                </div>
             </div>
-            <nav>
-                <ul class="nav-links">
+        </div>
+        
+        <!-- Super Navigation -->
+        <nav>
+            <ul class="super-nav">
+                <li class="super-nav-item">
+                    <a href="#" class="super-nav-link active" data-section="observations">Observation & Proposals</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="pages/low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="pages/computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="pages/formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="pages/high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sub Navigation -->
+        <div class="sub-nav active">
+            <div class="container">
+                <ul class="sub-nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="pages/overview.html">Overview</a></li>
                     <li><a href="pages/system-design.html">System Design</a></li>
                     <li><a href="pages/ethics.html">Ethics</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 

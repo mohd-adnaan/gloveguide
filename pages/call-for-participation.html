@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call for Participation - Glove Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .super-nav {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+        }
+
+        .super-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .super-nav-link:hover,
+        .super-nav-link.active {
+            color: #667eea;
+            background: #f8f9fa;
+            border-bottom-color: #667eea;
+        }
+
+        .sub-nav {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: #667eea;
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 0;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .content-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight-box strong {
+            color: #667eea;
+        }
+
+        .contact-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .contact-box p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .super-nav {
+                flex-direction: column;
+            }
+
+            .sub-nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="top-nav">
+            <div class="container nav-flex">
+                <div class="logo">
+                    <a href="../index.html"
+                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">GloveGuide</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav>
+            <ul class="super-nav">
+                <li class="super-nav-item">
+                    <a href="../index.html" class="super-nav-link">Observation & Proposals</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="low-fidelity.html" class="super-nav-link active">Low-Fidelity Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="sub-nav-links">
+                    <li><a href="low-fidelity.html">Low Fidelity Prototype</a></li>
+                    <li><a href="call-for-participation.html" class="active">Call for Participation</a></li>
+                    <li><a href="consent-form.html">Consent Form</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Call for Participation</h1>
+        <p class="subtitle">Human-Computer Interaction Course Projects</p>
+    </div>
+
+    <main class="container">
+        <div class="content-section">
+            <p>You are invited to participate in a small research study about <strong>wearable haptic navigation technology for cyclists and motorcyclists</strong>, as part of the Human-Computer Interaction course in the Department of Electrical and Computer Engineering at McGill University.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Who can participate?</h2>
+            <p>You must be:</p>
+            <ul>
+                <li>18 years of age or older</li>
+                <li>An experienced cyclist or motorcyclist</li>
+                <li>Comfortable navigating while cycling or walking</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">What is involved?</h2>
+            <p>You will be asked to:</p>
+            <ul>
+                <li>Provide information as part of a screening process to verify your eligibility for the study</li>
+                <li>Complete a questionnaire</li>
+                <li>Answer some interview questions</li>
+                <li>Perform several tasks in a laboratory-like setting</li>
+                <li>Be observed in a naturalistic setting while doing an activity (more specifically, navigating through a predefined route while wearing haptic navigation gloves or bracelets)</li>
+                <li>Perform several navigation tasks in a controlled setting</li>
+                <li>Be video-recorded while participating in the above activity</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">What is the time commitment?</h2>
+            <p>We expect to conduct <strong>4</strong> iterations of testing throughout the academic semester, each session lasting approximately <strong>30</strong> minutes. However, you may agree to participate in only one or more of these sessions, as you prefer.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Is there compensation?</h2>
+            <p>No, we regret we are unable to compensate you.</p>
+        </div>
+
+        <div class="content-section">
+            <h2 class="section-title">Interested in Participating?</h2>
+            <div class="contact-box">
+                <p><strong>Please contact us here:</strong></p>
+                <p>Kevin Wu: kevin.wu2@mail.mcgill.ca</p>
+                <p>Mohammad Adnaan: mohammad.adnaan@mail.mcgill.ca</p>
+                <p>William Goyens: william.goyens@mail.mcgill.ca</p>
+            </div>
+            <p style="margin-top: 1.5rem;">If you have any concerns about this call for participation or study, please contact the course instructor, Prof. Jeremy Cooperstock at <a href="mailto:jer@cim.mcgill.ca" style="color: #667eea;">jer@cim.mcgill.ca</a> or by telephone at 514-398-5992.</p>
+        </div>
+
+        <div class="content-section" style="background: #f8f9fa; font-size: 0.9rem; color: #666;">
+            <p><strong>Reference:</strong> ECSE HCI, September 5, 2021, GloveGuide</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
+        </div>
+    </footer>
+</body>
+
+</html>

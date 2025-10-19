@@ -56,6 +56,84 @@
             object-fit: cover;
         }
 
+        .top-nav {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 0;
+        }
+
+        /* Super Navigation */
+        .super-nav {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+        }
+
+        .super-nav-item {
+            position: relative;
+        }
+
+        .super-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .super-nav-link:hover,
+        .super-nav-link.active {
+            color: #667eea;
+            background: #f8f9fa;
+            border-bottom-color: #667eea;
+        }
+
+        /* Sub Navigation */
+        .sub-nav {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .super-nav {
+                flex-direction: column;
+            }
+
+            .super-nav-link {
+                text-align: center;
+            }
+
+            .sub-nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
         .brand {
             font-size: 1.5rem;
             font-weight: 700;
@@ -269,22 +347,49 @@
 
 <body>
     <header class="navbar">
-        <div class="container nav-flex">
-            <div class="logo">
-                <a href="../index.html"
-                    style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                    <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                    <span class="brand">GloveGuide</span>
-                </a>
+        <div class="top-nav">
+            <div class="container nav-flex">
+                <div class="logo">
+                    <a href="../index.html"
+                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">GloveGuide</span>
+                    </a>
+                </div>
             </div>
-            <nav>
-                <ul class="nav-links">
+        </div>
+
+        <!-- Super Navigation -->
+        <nav>
+            <ul class="super-nav">
+                <li class="super-nav-item">
+                    <a href="../index.html" class="super-nav-link active">Observation & Proposals</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Sub Navigation -->
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="sub-nav-links">
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="overview.html">Overview</a></li>
                     <li><a href="system-design.html">System Design</a></li>
-                    <li><a href="ethics.html" class="active">Ethics</a></li>
+                    <li><a href="ethics.html">Ethics</a></li>
                 </ul>
-            </nav>
+            </div>
         </div>
     </header>
 

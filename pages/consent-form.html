@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consent Form - Glove Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-nav {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0.75rem 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .navbar-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .super-nav {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+        }
+
+        .super-nav-link {
+            display: block;
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+
+        .super-nav-link:hover,
+        .super-nav-link.active {
+            color: #667eea;
+            background: #f8f9fa;
+            border-bottom-color: #667eea;
+        }
+
+        .sub-nav {
+            background: #f8f9fa;
+            padding: 0.5rem 0;
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: #667eea;
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 0;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .file-number {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        h2:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        ul {
+            margin: 1rem 0 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        .highlight-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .contact-info {
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .consent-options {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .consent-options p {
+            margin-bottom: 0.75rem;
+            padding-left: 1rem;
+        }
+
+        .signature-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+        }
+
+        .signature-line {
+            margin: 1.5rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .footer-note {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e0e0e0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0.3rem 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                padding: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="top-nav">
+            <div class="container nav-flex">
+                <div class="logo">
+                    <a href="../index.html"
+                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">GloveGuide</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <nav>
+            <ul class="super-nav">
+                <li class="super-nav-item">
+                    <a href="../index.html" class="super-nav-link">Observation & Proposals</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="low-fidelity.html" class="super-nav-link active">Low-Fidelity Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                </li>
+                <li class="super-nav-item">
+                    <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sub-nav">
+            <div class="container">
+                <ul class="sub-nav-links">
+                    <li><a href="low-fidelity.html">Low Fidelity Prototype</a></li>
+                    <li><a href="call-for-participation.html">Call for Participation</a></li>
+                    <li><a href="consent-form.html" class="active">Consent Form</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Consent Form</h1>
+        <p class="subtitle">Human-Computer Interaction Course Projects</p>
+    </div>
+
+    <main class="container">
+        <div class="content-wrapper">
+            <div class="file-number">REB File # 25-08-071</div>
+
+            <h2>Student Investigators</h2>
+            <p>
+                Wu, Kevin — kevin.wu2@mail.mcgill.ca<br>
+                Adnaan, Mohammad — mohammad.adnaan@mail.mcgill.ca<br>
+                Goyens, William — william.goyens@mail.mcgill.ca
+            </p>
+
+            <p>You are being invited to participate in a study affiliated with the McGill University course "Human-Computer Engineering" (ECSE 424/524). Please note that we are seeking <strong>experienced cyclists, motorcyclists and urban runners aged 18 or older</strong>.</p>
+
+            <h2>Purpose</h2>
+            <p>The overall purpose of this research is to evaluate the usability and safety of a haptic navigation system for cyclists and motorcyclists that uses vibration feedback to provide turn-by-turn directions.</p>
+
+            <h2>What You Will Be Asked to Do</h2>
+            <p>After you have read this document, we will respond to any questions or concerns that you may have. Once you have signed this consent form, you will be asked to:</p>
+
+            <ul>
+                <li>Provide information as part of a screening process to verify your eligibility for the study</li>
+                <li>Complete a questionnaire</li>
+                <li>Answer interview questions</li>
+                <li>Be observed while performing a routine activity (e.g., navigating while cycling or walking)</li>
+                <li>Interact with physical objects (e.g., a paper prototype, glove or bracelet prototype with haptic feedback)</li>
+            </ul>
+
+            <p>Your participation in these activities is completely voluntary. You may choose not to take part in any activity, or not to respond to any question.</p>
+
+            <p>Each experimental session should take about <strong>30 minutes</strong>. There will be a total of <strong>4 sessions</strong> throughout the semester. You may be asked to participate in more than one such session, but you are not obligated to do so.</p>
+
+            <p>The sessions may also be video and/or audio recorded. You have the option not to be video/audio recorded.</p>
+
+            <h2>How the Data Collected Will Be Used</h2>
+            <p>Data collected (including any audio/video recordings) will be used for analysis and may also be used for class project presentations and other research presentations. Only the student researchers, TAs, instructor, and in the case of graduate projects, the student's graduate supervisor, will have access to these materials.</p>
+
+            <p>Although only a course project in its current form, this project may, at a later date, be extended by one or more of the student investigators to form the basis of their thesis research and/or be submitted as a research publication. If you consent, anonymized transcripts and analysis data (but not video/audio recordings) from this study may be used for future related research on haptic navigation systems and wearable technology.</p>
+
+            <p>You have the right to consult your study file in order to verify the personal information gathered, and to have it corrected if necessary, by contacting Mohammad Adnaan at mohammad.adnaan@mail.mcgill.ca.</p>
+
+            <h2>Compensation</h2>
+            <p>There is <strong>no compensation</strong> for participating in this study.</p>
+
+            <h2>Confidentiality</h2>
+            <p>The results of your participation will be reported without any reference to you specifically. Please note that while the collected data will be stored in Canada, it may leave Quebec.</p>
+
+            <div class="highlight-box">
+                <p>Your data will be treated confidentially and your identity will not be revealed in reporting the study results, with the exception of video/audio recordings that may be presented as part of an in-class presentation. However, if such recordings are to be used in any other venue, such as a scholarly conference, this will require that participants be non-identifiable in the video/images.</p>
+            </div>
+
+            <h2>Data Retention</h2>
+            <p>Identifiable data and video/audio recordings will be stored securely on a password-protected computer account or Microsoft OneDrive for Business. All digital data will be encrypted. All data from individual participants will be coded so that their anonymity will be protected in any reports, research papers, thesis documents, and presentations that result from this work.</p>
+
+            <h2>Withdrawal from the Study</h2>
+            <p>You may withdraw from the study at any time and request that your data be deleted. However, in most cases, by the end of the semester, after analysis of the data has been completed, or the results of the study reported, or after the keyfile that links your identity to the data has been destroyed, it may no longer be possible to delete your data. We expect to delete the keyfile within 3 months of the study.</p>
+
+            <h2>Contact for Information About the Rights of Research Subjects</h2>
+            <p>Should you have any questions about this study, you may contact the course instructor, Prof. Jeremy Cooperstock at jer@cim.mcgill.ca or by telephone at 514-398-5992.</p>
+
+            <div class="contact-info">
+                <p><strong>If you have any ethical concerns or complaints about your participation in this study, and want to speak with someone not on the research team, please contact the Research Ethics Board Office at Daniel.tesolin@mcgill.ca or 514-398-5410, citing REB file number 25-08-071.</strong></p>
+            </div>
+
+            <h2>Recording Consent</h2>
+            <p>Indicate your agreement to <strong>one</strong> of the following options by providing your <strong>initials</strong>:</p>
+
+            <div class="consent-options">
+                <p>☐ I consent to being video/audio recorded for this study. _______</p>
+                <p>☐ I consent to being audio recorded only (no video) for this study. _______</p>
+                <p>☐ I do NOT consent to being video/audio recorded for this study. _______</p>
+            </div>
+
+            <div class="signature-section">
+                <p>Please sign below if you have read the above information and consent to participate in this study. Agreeing to participate in this study does not waive any of your rights or release the researchers from their responsibilities. Your signed form may be returned electronically by email to mohammad.adnaan@mail.mcgill.ca.</p>
+
+                <div class="signature-line">
+                    <p>Participant's Name (please print): ____________________________________</p>
+                </div>
+
+                <div class="signature-line">
+                    <p>Participant's Signature: _______________________________________ Date: _____________</p>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                <p>Version of June 23, 2024.</p>
+                <p>Consult website for submission requirements: <a href="https://mcgill.ca/research/research/compliance/human/reb-i-ii-iii" target="_blank">https://mcgill.ca/research/research/compliance/human/reb-i-ii-iii</a></p>
+                <p>Research Ethics Boards (1,2,3,4) Application - Updated December 2018</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
+        </div>
+    </footer>
+</body>
+
+</html>
