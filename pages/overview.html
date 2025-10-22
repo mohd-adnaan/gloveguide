@@ -264,6 +264,20 @@
             margin: 2rem 0;
         }
 
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
         .comparison ul {
             list-style: none;
             margin-top: 1rem;
@@ -415,55 +429,81 @@
                     eliminate the risk of distraction.</li>
             </ul>
 
-            <img src="../images/high_frequency user_group.png" alt="User Groups Analysis" class="persona-image">
-
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="../images/image1_persona.jpg" alt="List of Distinguishing Behaviors" />
+                    <p class="image-caption">List of Distinguishing Behaviors</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/image2_persona.jpg" alt="Group the Behaviors" />
+                    <p class="image-caption">Group the Behaviors</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/image3_persona.jpg" alt="Group Analysis" />
+                    <p class="image-caption">Group Analysis</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/image4_persona.jpg" alt="Name the Group" />
+                    <p class="image-caption">Name the Group</p>
+                </div>
+            </div>
             <p class="image-caption">The following photos show our work process and intermediate results.</p>
-        </div>
 
-        <div class="content-section">
-            <h2 class="section-title">Use-Case Scenario</h2>
-            <div class="use-case">
-                <p>To illustrate functionality, consider the following example:</p>
-                <ul>
-                    <li><strong>Alice</strong>, a newcomer to the city, plans to visit multiple destinations by bicycle.
-                    </li>
-                    <li>Before departing, she selects her first destination on her smartphone, then stores the device
-                        securely in her pocket.</li>
-                    <li>Equipped with a helmet and Glove Guide, she begins her ride.</li>
-                    <li>Upon approaching an intersection, Alice maintains her standard safety routine—checking for
-                        vehicles and pedestrians—while receiving haptic feedback from her gloves.
-                        <ul>
-                            <li>A vibration on the left glove indicates a left turn, which she executes after ensuring
-                                the road is clear.</li>
-                            <li>The vibration ceases once the turn is complete.</li>
-                        </ul>
-                    </li>
-                    <li>Throughout her trip, Alice receives turn-by-turn haptic cues without needing to consult her
-                        phone, allowing her to remain attentive to her surroundings while navigating efficiently.</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="content-section">
-            <h2 class="section-title">Comparison with Related Products</h2>
-            <div class="comparison">
-                <ul>
-                    <li><strong>Google Maps:</strong> Requires frequent visual attention, distracting users from their
-                        environment.</li>
-                    <li><strong>Audio Guidance:</strong> Instructions are often obscured by environmental noise.</li>
-                    <li><strong>Earphones:</strong> Improve audibility but block external sounds such as horns, while
-                        also being prohibited for cyclists in some jurisdictions.</li>
-                    <li><strong>Handlebar-Mounted Smartphone Holders:</strong> Reduce the difficulty of accessing phones
-                        but still require visual attention, perpetuating distraction risks.</li>
-                </ul>
+            <div class="content-section">
+                <h2 class="section-title">Use-Case Scenario</h2>
+                <div class="use-case">
+                    <p>To illustrate functionality, consider the following example:</p>
+                    <ul>
+                        <li><strong>Alice</strong>, a newcomer to the city, plans to visit multiple destinations by
+                            bicycle.
+                        </li>
+                        <li>Before departing, she selects her first destination on her smartphone, then stores the
+                            device
+                            securely in her pocket.</li>
+                        <li>Equipped with a helmet and Glove Guide, she begins her ride.</li>
+                        <li>Upon approaching an intersection, Alice maintains her standard safety routine—checking for
+                            vehicles and pedestrians—while receiving haptic feedback from her gloves.
+                            <ul>
+                                <li>A vibration on the left glove indicates a left turn, which she executes after
+                                    ensuring
+                                    the road is clear.</li>
+                                <li>The vibration ceases once the turn is complete.</li>
+                            </ul>
+                        </li>
+                        <li>Throughout her trip, Alice receives turn-by-turn haptic cues without needing to consult her
+                            phone, allowing her to remain attentive to her surroundings while navigating efficiently.
+                        </li>
+                    </ul>
+                    <img src="../images/high_frequency user_group.png" alt="User Groups Analysis" class="persona-image">
+                    <p class="image-caption">High Frequency User Group(AI Generated)</p>
+                </div>
             </div>
 
-            <div class="highlight-box">
-                <p><strong>In contrast, Glove Guide provides a discreet and intuitive haptic navigation system that
-                        minimizes distraction, preserves environmental awareness, and enhances safety for a wide range
-                        of urban road users.</strong></p>
+            <div class="content-section">
+                <h2 class="section-title">Comparison with Related Products</h2>
+                <div class="comparison">
+                    <ul>
+                        <li><strong>Google Maps:</strong> Requires frequent visual attention, distracting users from
+                            their
+                            environment.</li>
+                        <li><strong>Audio Guidance:</strong> Instructions are often obscured by environmental noise.
+                        </li>
+                        <li><strong>Earphones:</strong> Improve audibility but block external sounds such as horns,
+                            while
+                            also being prohibited for cyclists in some jurisdictions.</li>
+                        <li><strong>Handlebar-Mounted Smartphone Holders:</strong> Reduce the difficulty of accessing
+                            phones
+                            but still require visual attention, perpetuating distraction risks.</li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <p><strong>In contrast, Glove Guide provides a discreet and intuitive haptic navigation system that
+                            minimizes distraction, preserves environmental awareness, and enhances safety for a wide
+                            range
+                            of urban road users.</strong></p>
+                </div>
             </div>
-        </div>
     </main>
 
     <footer class="footer">
