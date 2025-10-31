@@ -12,27 +12,48 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--dark);
+            background: var(--white);
         }
 
+        /* Navigation Styles */
         .navbar {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .top-nav {
+            padding: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -47,18 +68,30 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            transition: transform 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .navbar-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             object-fit: cover;
+            box-shadow: var(--shadow-md);
         }
 
-        .top-nav {
-            border-bottom: 1px solid #e0e0e0;
-            padding: 0.75rem 0;
+        .brand {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         /* Super Navigation */
@@ -66,7 +99,10 @@
             display: flex;
             list-style: none;
             gap: 0;
-            justify-content: center;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            flex: 1;
         }
 
         .super-nav-item {
@@ -76,24 +112,44 @@
         .super-nav-link {
             display: block;
             text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 1.25rem 1.75rem;
+            transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .super-nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .super-nav-link:hover::before,
+        .super-nav-link.active::before {
+            width: 100%;
         }
 
         .super-nav-link:hover,
         .super-nav-link.active {
-            color: #667eea;
-            background: #f8f9fa;
-            border-bottom-color: #667eea;
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
         }
 
         /* Sub Navigation */
         .sub-nav {
-            background: #f8f9fa;
-            padding: 0.5rem 0;
+            background: var(--light-gray);
+            padding: 0.75rem 0;
+            display: block;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .sub-nav-links {
@@ -106,22 +162,32 @@
 
         .sub-nav-links a {
             text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            padding: 0.5rem 1.25rem;
-            transition: color 0.3s;
-            font-size: 0.95rem;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            position: relative;
         }
 
         .sub-nav-links a:hover,
         .sub-nav-links a.active {
-            color: #667eea;
+            color: var(--primary);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             .super-nav {
                 flex-direction: column;
+                width: 100%;
             }
 
             .super-nav-link {
@@ -132,30 +198,18 @@
                 flex-direction: column;
                 align-items: center;
             }
-        }
 
-        .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-        }
+            .page-header h1 {
+                font-size: 2rem;
+            }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+            .container {
+                padding: 0 1rem;
+            }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #3498db;
+            .content-section {
+                padding: 1.5rem;
+            }
         }
 
         main {
@@ -252,7 +306,7 @@
         }
 
         .safety-list li::before {
-            content: "✓";
+            content: "âœ“";
             position: absolute;
             left: 0.75rem;
             color: #4caf50;
@@ -261,7 +315,7 @@
         }
 
         .privacy-list li::before {
-            content: "🔒";
+            content: "ðŸ”’";
             position: absolute;
             left: 0.75rem;
             font-size: 1rem;
@@ -352,33 +406,33 @@
                 <div class="logo">
                     <a href="../index.html"
                         style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                        <span class="brand">GloveGuide</span>
+                        <img src="../images/logo-glove-guide.png" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">gloveguide</span>
                     </a>
                 </div>
+
+                <!-- Super Navigation -->
+                <nav>
+                    <ul class="super-nav">
+                        <li class="super-nav-item">
+                            <a href="../index.html" class="super-nav-link active">Observation & Proposals</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-
-        <!-- Super Navigation -->
-        <nav>
-            <ul class="super-nav">
-                <li class="super-nav-item">
-                    <a href="../index.html" class="super-nav-link active">Observation & Proposals</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
-                </li>
-            </ul>
-        </nav>
 
         <!-- Sub Navigation -->
         <div class="sub-nav">
@@ -387,7 +441,7 @@
                     <li><a href="../index.html">Home</a></li>
                     <li><a href="overview.html">Overview</a></li>
                     <li><a href="system-design.html">System Design</a></li>
-                    <li><a href="ethics.html">Ethics</a></li>
+                    <li><a href="ethics.html" class="active">Ethics</a></li>
                 </ul>
             </div>
         </div>
@@ -421,7 +475,7 @@
             <div class="info-grid">
                 <div class="info-card">
                     <h3>Participant Demographics</h3>
-                    <p>5–10 participants, gender neutral, ages 17–70, anyone capable of cycling</p>
+                    <p>5â€“10 participants, gender neutral, ages 17â€“70, anyone capable of cycling</p>
                 </div>
                 <div class="info-card">
                     <h3>Recruitment</h3>
@@ -483,7 +537,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>McGill University â€” ECSE Design Project (Fall 2025)</p>
             <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
         </div>
     </footer>

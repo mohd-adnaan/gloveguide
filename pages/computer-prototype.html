@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>High Fidelity Prototype - Glove Guide</title>
+    <title>Computer Prototype - Glove Guide</title>
     <style>
         * {
             margin: 0;
@@ -12,27 +12,44 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--dark);
+            background: var(--white);
         }
 
+        /* Navigation Styles */
         .navbar {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .top-nav {
-            border-bottom: 1px solid #e0e0e0;
-            padding: 0.75rem 0;
+            padding: 0;
         }
 
         .container {
@@ -51,177 +68,331 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            transition: transform 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .navbar-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             object-fit: cover;
+            box-shadow: var(--shadow-md);
         }
 
         .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
+        /* Super Navigation */
         .super-nav {
             display: flex;
             list-style: none;
             gap: 0;
-            justify-content: center;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        .super-nav-item {
+            position: relative;
         }
 
         .super-nav-link {
             display: block;
             text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 1.25rem 1.75rem;
+            transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .super-nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .super-nav-link:hover::before,
+        .super-nav-link.active::before {
+            width: 100%;
         }
 
         .super-nav-link:hover,
         .super-nav-link.active {
-            color: #667eea;
-            background: #f8f9fa;
-            border-bottom-color: #667eea;
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
         }
 
+        /* Sub Navigation */
+        .sub-nav {
+            background: var(--light-gray);
+            padding: 0.75rem 0;
+            display: none;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .sub-nav.active {
+            display: block;
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 8px;
+        }
+
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: var(--primary);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Main Content */
         main {
             flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem;
+            padding: 3rem 0;
         }
 
-        .coming-soon-container {
+        .hero-section {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 4rem 0;
+            margin-bottom: 3rem;
             text-align: center;
-            max-width: 700px;
+            box-shadow: var(--shadow-lg);
         }
 
-        .icon-container {
-            font-size: 6rem;
-            margin-bottom: 2rem;
-            animation: rotate 4s linear infinite;
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        h1 {
+        .hero-title {
             font-size: 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 800;
             margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .subtitle {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 2rem;
+        .hero-subtitle {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            font-weight: 400;
         }
 
-        .feature-preview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+        .content-section {
+            margin-bottom: 4rem;
         }
 
-        .feature-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
+        .section-title {
             font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-title {
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .status-badge {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 0.5rem;
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
+        }
+
+        .subsection-title {
+            font-size: 1.75rem;
             font-weight: 600;
-            margin: 1rem 0;
+            margin: 2rem 0 1rem;
+            color: var(--dark);
         }
 
-        .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .sub-subsection-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: var(--primary-dark);
         }
 
-        .back-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #374151;
         }
 
-        .footer {
-            background: #2c3e50;
-            color: white;
+        ul,
+        ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid-two {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            justify-content: center;
+        }
+
+        .image-single {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .image-single .image-card {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .caption {
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--gray);
             text-align: center;
+            background: var(--light-gray);
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: var(--white);
             padding: 2rem 0;
+            text-align: center;
             margin-top: auto;
         }
 
         .footer p {
-            margin: 0.3rem 0;
-            opacity: 0.9;
+            margin: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.8);
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
+            .hero-title {
                 font-size: 2rem;
             }
 
-            .subtitle {
-                font-size: 1.1rem;
+            .section-title {
+                font-size: 1.75rem;
             }
 
-            .icon-container {
-                font-size: 4rem;
+            .subsection-title {
+                font-size: 1.5rem;
             }
 
-            .feature-preview {
+            .super-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .super-nav-link {
+                padding: 1rem;
+            }
+
+            .sub-nav-links {
+                flex-direction: column;
+            }
+
+            .image-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -229,69 +400,799 @@
 </head>
 
 <body>
-    <header class="navbar">
+    <nav class="navbar">
         <div class="top-nav">
-            <div class="container nav-flex">
-                <div class="logo">
-                    <a href="../index.html"
-                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                        <span class="brand">GloveGuide</span>
+            <div class="container">
+                <div class="nav-flex">
+                    <a href="../index.html" class="logo">
+                        <img src="../images/logo-glove-guide.png" alt="Glove Guide Logo" class="navbar-logo">
+                        <span class="brand">gloveguide</span>
                     </a>
+                    <ul class="super-nav">
+                        <li class="super-nav-item">
+                            <a href="../index.html" class="super-nav-link">Observation & Proposal</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="low-fidelity.html" class="super-nav-link">Low Fidelity</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="computer-prototype.html" class="super-nav-link active">Computer Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="high-fidelity.html" class="super-nav-link">High Fidelity</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="system-design.html" class="super-nav-link">System Design</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <div class="sub-nav active">
+            <div class="container">
+                <ul class="sub-nav-links">
+                    <li><a href="#user-manual">User Manual</a></li>
+                    <li><a href="#design-evolution">Design Evolution</a></li>
+                    <li><a href="#prototype-implementation">Prototype Implementation</a></li>
+                    <li><a href="#user-population">User Population</a></li>
+                    <li><a href="#usability-goals">Usability Goals</a></li>
+                    <li><a href="#test-procedure">Test Procedure</a></li>
+                    <li><a href="#reporting">Reporting</a></li>
+                    <li><a href="#usability-evaluation">Usability Evaluation</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <nav>
-            <ul class="super-nav">
-                <li class="super-nav-item">
-                    <a href="../index.html" class="super-nav-link">Observation & Proposals</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="computer-prototype.html" class="super-nav-link active">Computer Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <div class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">Computer Prototype</h1>
+        </div>
+    </div>
 
-    <main>
-        <div class="coming-soon-container">
-            <div class="icon-container">⚙️</div>
-            <h1>In Development</h1>
-            <p class="subtitle">Our High Fidelity Prototype is being crafted with precision</p>
-            
-            <div class="status-badge">Final Stage Coming Soon</div>
+    <main class="container">
+        <!-- Introduction Section -->
+        <div class="content-section" id="introduction">
+            <h2 class="section-title">Introduction</h2>
+            <p>This report presents the design evolution, prototype implementation, and usability evaluation plan for
+                Glove Guide, a haptic navigation system developed to enhance safety and convenience for cyclists and
+                pedestrians. The project aims to replace traditional visual and auditory navigation cues with intuitive
+                haptic feedback delivered through wearable components such as gloves or bracelets, allowing users to
+                remain attentive to their surroundings while navigating.</p>
 
-            <div class="feature-preview">
- 
-                <div class="feature-card">
-                    <div class="feature-icon">📱</div>
-                    <div class="feature-title">Full Integration</div>
-                    <div class="feature-desc">Complete system integration and functionality</div>
+            <p>Building on insights from earlier low-fidelity testing, this deliverable details the refined prototype,
+                the procedures for usability testing, and the methods for data recording and reporting. It also includes
+                a comprehensive user manual to ensure that evaluators can operate the system independently. Together,
+                these materials provide a clear framework for assessing the system's usability and guiding further
+                refinements toward a fully functional, user-validated prototype.</p>
+        </div>
+
+        <!-- User Manual Section -->
+        <div class="content-section" id="user-manual">
+            <h2 class="section-title">User Manual / Installation Guide</h2>
+
+            <h2 class="subsection-title">Navigation App User Manual – Glove Guide</h2>
+
+            <h3 class="subsection-title">Table of Contents</h3>
+            <p>
+                <li>Getting Started</li>
+            </p>
+            <p>
+                <li>Setting Up Your Gloves</li>
+            </p>
+            <p>
+                <li>Main Navigation Interface</li>
+            </p>
+            <p>
+                <li>Searching for Destinations</li>
+            </p>
+            <p>
+                <li>Selecting Transportation Methods</li>
+            </p>
+            <p>
+                <li>Navigating with the App</li>
+            </p>
+            <p>
+                <li>Understanding Haptic Feedback</li>
+            </p>
+            <p>
+                <li>Configuring Settings</li>
+            </p>
+            <p>
+                <li>Ending Your Journey</li>
+            </p>
+            <p>
+                <li>Menu Layout</li>
+            </p>
+
+            <h3 class="subsection-title">1. Getting Started</h3>
+
+            <h4 class="sub-subsection-title">About Glove Guide</h4>
+            <p>Glove Guide is a haptic-based navigation system designed to enhance safety and focus for cyclists and
+                pedestrians. It connects Bluetooth-enabled gloves with a smartphone app to deliver hands-free, eyes-free
+                navigation through vibration patterns.</p>
+
+            <h4 class="sub-subsection-title">App Installation</h4>
+            <p>You can install the Glove Guide app in one of two ways:</p>
+            <p>
+                <li><b>Direct installation:</b> Transfer the application from a desktop or laptop to your phone.</li>
+            </p>
+            <p>
+                <li><b>TestFlight:</b> Download and install through Apple's TestFlight testing platform.</li>
+            </p>
+
+            <h4 class="sub-subsection-title">First Launch</h4>
+            <p>Open the Glove Guide app.</p>
+            <p>Allow location permissions when prompted.</p>
+            <p>The app will display a map centered on your current location.</p>
+            <p>Note the "Gloves Disconnected" status at the bottom: you'll connect your gloves in the next section
+                ("Setting Up Your Gloves").</p>
+
+
+            <div class="image-grid-two">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image1.png" alt="Getting Started" />
+
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <div class="feature-title">Enhanced UX & Refined Design</div>
-                    <div class="feature-desc">Optimized user experience based on feedback</div>
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image2.png" alt="Getting Started" />
+                    <p class="caption">Getting Started with Glove Guide</p>
                 </div>
             </div>
-            
-            <a href="../index.html" class="back-link">← Back to Home</a>
+
+            <h3 class="subsection-title">2. Setting Up Your Gloves</h3>
+
+            <h4 class="sub-subsection-title">Bluetooth Connection</h4>
+            <p>Tap the Settings icon (⚙️) in the top-right corner.</p>
+            <p>Under "Bluetooth Connection", check the Device Status.</p>
+            <p>If it says Connected, your gloves are ready.</p>
+            <p>If it says Disconnected, tap Connect and ensure your gloves are in pairing mode.</p>
+            <p>When connected, the main screen will show "Gloves Connected."</p>
+            <p>
+                <li> <b>Important:</b>Make sure your gloves are charged and within Bluetooth range.</li>
+            </p>
+
+            <h3 class="subsection-title">3. Main Navigation Interface</h3>
+
+            <h4 class="sub-subsection-title">Map Overview</h4>
+            <p>The main map displays your location and nearby points of interest.</p>
+            <p>Your Location: Blue dot</p>
+            <p>Landmarks:</p>
+            <p>Parks – Green</p>
+            <p>Transit Stations – Blue</p>
+            <p>Restaurants – Orange</p>
+            <p>Shopping Areas – Yellow</p>
+            <p>Entertainment/Art – Pink</p>
+            <p>Hospitals/Medical – Red</p>
+            <p>Hotels – Purple</p>
+
+            <h4 class="sub-subsection-title">Interface Elements</h4>
+            <p>App Logo: "gloveguide" (top center)</p>
+            <p>Menu Button (≡): Top left</p>
+            <p>Settings (⚙️): Top right</p>
+            <p>Search Bar: Bottom ("Search Here")</p>
+            <p>Connection Status: "Gloves Connected/Disconnected" indicator</p>
+
+            <h3 class="subsection-title">4. Searching for Destinations</h3>
+
+            <h4 class="sub-subsection-title">Steps</h4>
+            <p>Tap the Search Bar at the bottom.</p>
+            <p>Type your desired destination (e.g., "McGill").</p>
+            <p>Choose from Recent Searches or Nearby Locations.</p>
+            <p>Select the destination — the map will center on it.</p>
+
+
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image3.png" alt="Main Navigation Interface" />
+                    <p class="caption">Main navigation interface</p>
+                </div>
+
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image4.png" alt="Map Overview" />
+                    <p class="caption">Map overview with landmarks</p>
+                </div>
+
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image5.png" alt="Searching for Destinations" />
+                    <p class="caption">Destination search interface</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">5. Selecting Transportation Methods</h3>
+
+            <h4 class="sub-subsection-title">Available Modes</h4>
+            <p>
+                <li><b>Cycling Mode</b>: Bicycle icon (Black button): Shows bike-friendly paths.</li>
+            </p>
+            <p>
+                <li><b>Walking Mode</b>: Walking figure icon (Blue button): Shows pedestrian routes.</li>
+            </p>
+
+            <h4 class="sub-subsection-title">Mode Selection Process</h4>
+            <p>After choosing a destination, select your preferred mode.
+                The app will calculate and display an optimized route.</p>
+
+            <div class="image-single">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image6.png" alt="Search Results" />
+                    <p class="caption">Search results and selection</p>
+                </div>
+            </div>
+
+
+
+            <h3 class="subsection-title">6. Navigating with the App</h3>
+
+            <h4 class="sub-subsection-title">Starting Navigation</h4>
+            <p>Tap Start Navigation.</p>
+            <p>You'll see:</p>
+            <p>Blue route line – Your path</p>
+            <p>Blue dot – Current location</p>
+            <p>Red pin – Destination</p>
+            <p>Navigation Card – ETA, Time Left, and Distance</p>
+            <p>Stop Navigation button (red)</p>
+
+            <h4 class="sub-subsection-title">During the Journey</h4>
+            <p>The map updates your position in real time.</p>
+            <p>Gloves vibrate to indicate turns and alerts.</p>
+            <p>Distance and ETA adjust automatically.</p>
+
+            <div class="image-single">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image7.png" alt="Active Navigation" />
+                    <p class="caption">Active navigation screen</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">7. Understanding Haptic Feedback</h3>
+
+            <h4 class="sub-subsection-title">How It Works</h4>
+            <p>Left glove vibrates for left turns; Right glove vibrates for right turns.</p>
+            <p>Vibrations occur before intersections, based on your lead-time setting.</p>
+            <p>Intensity may increase progressively as you approach a turn.</p>
+            <p>Both gloves may vibrate to signal arrival or rerouting.</p>
+            <p>This design allows for intuitive, glance-free navigation while maintaining focus on the road or path.</p>
+
+
+            <h3 class="subsection-title">8. Configuring Settings</h3>
+
+            <h4 class="sub-subsection-title">Accessing Settings</h4>
+            <p>Tap the ⚙️ icon in the top-right corner to open settings.</p>
+
+            <h4 class="sub-subsection-title">Haptic Settings</h4>
+            <p><b>Vibration Intensity:</b> Adjustable slider (0–100%). Default: 50%.</p>
+            <p><b>Lead Time Before Turn:</b>Set between 0–20 seconds.</p>
+            <p><b>Progressive Intensity:</b> Toggle ON/OFF. When enabled, vibrations strengthen as you approach a turn.
+            </p>
+
+            <h4 class="sub-subsection-title">Bluetooth Connection</h4>
+            <p><b>Device Status</b> Displays current connection.</p>
+            <p><b>Connect Button:</b> Re-pairs gloves if disconnected.</p>
+
+            <h4 class="sub-subsection-title">Navigation Preferences</h4>
+            <p><b>Default Mode: </b>Choose Walking or Cycling.</p>
+            <p><b>Custom Mode: </b>Can be changed per trip.</p>
+
+            <h4 class="sub-subsection-title">About Section</h4>
+            <p>Displays app version and general information.</p>
+            <p>Version: 1.0.0</p>
+            <p>App Name: Glove Guide</p>
+
+            <div class="image-single">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image8.png" alt="Settings Screen" />
+                    <p class="caption">Settings and configuration options for Haptics Feedback Customization</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">9. Ending Your Journey</h3>
+
+            <h4 class="sub-subsection-title">Arrival at Destination</h4>
+            <p>When you arrive:</p>
+            <p>A popup appears: "END of Navigation"</p>
+            <p>Message: "You have reached your destination."</p>
+            <p>Tap OK (blue) to finish, or Cancel to continue.</p>
+
+            <h4 class="sub-subsection-title">Stopping Manually</h4>
+            <p>Tap STOP NAVIGATION (red).</p>
+            <p>Confirm to return to the main map.</p>
+
+            <h4 class="sub-subsection-title">After Navigation</h4>
+            <p>The map returns to exploration mode.</p>
+            <p>Gloves remain paired for future use.</p>
+
+            <div class="image-grid-two">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image9.png" alt="End of Navigation" />
+                    <p class="caption">Navigation completion screen</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image10.png" alt="Starting from the HomeScreen" />
+                    <p class="caption">Starting from MainScreen</p>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">10. Menu Layout</h3>
+            <p>Access the main menu via the Menu Button (≡) in the top left.</p>
+
+            <h4 class="sub-subsection-title">Menu Sections</h4>
+            <p>About: Problem Statement, Solution, Key Features</p>
+            <p>Terms and Conditions: Acceptance, Use of Service, Safety Disclaimer</p>
+            <p>Bluetooth Connectivity: Information and troubleshooting</p>
+            <p>Support: Developer contact and FAQs</p>
+
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image11.png" alt="Menu Layout Interface" />
+                    <p class="caption">Menu Layout Interface</p>
+                </div>
+
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image12.png" alt="About" />
+                    <p class="caption">About Page</p>
+                </div>
+
+                <div class="image-card">
+                    <img src="../images/computer_prototype/image13.png" alt="Searching for Destinations" />
+                    <p class="caption">Terms of Condition</p>
+                </div>
+            </div>
+        </div>
+        <div class = "image-single">
+                        <div class="image-card">
+                <img src="../images/computer_prototype/image14.png" alt="Support" />
+                <p class="caption">Support Page</p>
+            </div>
+        </div>  
+
+        <!-- Design Evolution Section -->
+        <div class="content-section" id="design-evolution">
+            <h2 class="section-title">Design Evolution</h2>
+            <p>Following the low-fidelity prototype testing and peer feedback, several revisions were identified to
+                enhance both the usability and technical feasibility of the Glove Guide system. These design evolutions
+                were driven by direct user observations, peer comments, and new insights gained during preliminary
+                implementation planning.</p>
+
+            <p><b>1. Transition from Planned Google Maps API to Apple Maps API/Kit</b>
+                While the team initially planned to implement navigation functionality using the Google Maps API,
+                subsequent study with members of the target user group—including participants from the low-fidelity
+                usability test—showed that most users primarily relied on Apple Maps for daily navigation. In addition,
+                the development team possesses stronger experience with the iOS platform. As a result, the team decided
+                to adopt Apple Maps API/Kit for future development to better align with user familiarity and streamline
+                implementation.
+                Justification: Improved intuitiveness for users and higher development feasibility due to platform
+                expertise.</p>
+
+            <p><b>2. Improved Bracelet Feedback through Adjustable Straps</b>
+                Test participants reported inconsistent haptic sensations from the bracelet, often caused by variable
+                tightness around the wrist. To address this issue, the new prototype includes adjustable straps,
+                enabling users to control the fit according to personal comfort. This modification ensures more
+                consistent haptic transmission and enhances the reliability of feedback during use.
+                Justification: Increased reliability, effectiveness, and overall user satisfaction.</p>
+
+            <p><b>3. Lightweight Fingerless Glove Design</b>
+                During the initial tests, users found that the glove design restricted their hand movements and felt
+                cumbersome. To improve comfort and usability, the new iteration adopts a lightweight, fingerless glove,
+                allowing free finger movement while retaining necessary sensing and feedback functionality.
+                Justification: Improved user comfort and satisfaction during use.</p>
+
+            <p><b>4. Customizable Haptic Feedback Settings</b>
+                Usability testing revealed notable individual differences in how participants perceived and preferred
+                haptic feedback. For example, Participant 1 reported that the vibration intensity was generally
+                comfortable and clear, whereas Participant 2 found the vibrations too subtle when moving the arm.
+                Confidence ratings in interpreting directional cues ranged between 3.5 and 5.0, indicating variability
+                across users.
+                To accommodate these differences, the new prototype includes a customization interface allowing users
+                to:</p>
+
+            <p>
+                <li>Adjust vibration intensity to their preference.</li>
+            </p>
+            <p>
+                <li>Choose how many seconds before a turn the vibration should begin.</li>
+            </p>
+
+            <p>
+                <li>This feature personalizes the interaction, improving clarity and overall user confidence.
+                    Justification: Enhanced reliability, effectiveness, and user satisfaction through personalization
+                    and adaptability.</li>
+            </p>
+        </div>
+
+        <!-- Prototype Implementation Section -->
+        <div class="content-section" id="prototype-implementation">
+            <h2 class="section-title">Prototype Implementation</h2>
+            <p>The computer-based prototype of the Glove Guide builds upon the structure of the earlier low-fidelity
+                version and continues to consist of three main components: electrical, physical, and <b>software
+                    application</b> elements. Together, these components enable users to experience the full "look and
+                feel" of the intended system with minimal reliance on Wizard of Oz techniques.</p>
+
+            <p><b>Electrical Components</b>
+
+            <p>The electrical system remains the same from the previous iteration, as it already fulfilled the intended
+                functionality.The electrical system remains unchanged from the previous iteration, as it already
+                fulfilled the intended functionality. It includes two switches, each connected to a distinct vibration
+                motor positioned on the left and right sides of the wearable parts. When a switch is activated, the
+                corresponding motor provides haptic feedback to the user, and the vibration stops when the switch is
+                turned off. This setup ensures precise and immediate tactile cues corresponding to directional signals.
+            </p>
+
+            <p><b>Physical Components</b>
+
+            <p>The physical design has been updated to reflect user feedback obtained during the low-fidelity testing
+                phase. The full-hand gloves have been replaced by lightweight, fingerless gloves, and the fixed-tight
+                bracelets have been replaced with an adjustable strap design. These adjustments improve comfort and
+                usability by allowing users to move freely and customize the fit according to personal preference. The
+                vibration components remain securely attached to the physical parts in the same relative positions as
+                before—specifically, the left vibration motor is mounted on the left wearable, and the right motor on
+                the right wearable—ensuring clear directional correspondence between haptic feedback and navigational
+                cues.</p>
+
+            <p><b>Software Application</b>
+            <p>The most significant progress has been achieved in the software component. The user interfaces developed
+                during the paper prototype stage have been implemented as an iOS application. The app provides users
+                with all key interactions that were identified as central during the low-fidelity testing phase,
+                including:</p>
+
+            <p>
+                <li>Destination search and selection</li>
+            </p>
+            <p>
+                <li>Transport mode selection</li>
+            </p>
+            <p>
+                <li>Haptic feedback customization (intensity and timing)</li>
+            </p>
+
+            <p>The application can be easily installed on standard iOS devices without requiring special technical
+                skills, ensuring accessibility and portability for future usability testing. This implementation now
+                allows users to interact directly with the system's main functions, providing a realistic impression of
+                its final look and feel.</p>
+
+            <p><b>Alignment with Project Objectives</b>
+            <p>The Glove Guide project aims to enhance navigational safety by replacing visual and auditory navigation
+                outputs with haptic feedback, allowing users to remain attentive to their surroundings while receiving
+                navigation instructions. The current prototype successfully demonstrates this functionality by
+                delivering directional guidance through tactile cues, meeting the project's central objective of
+                hands-free, eyes-free navigation.</p>
+        </div>
+
+        <!-- User Population Section -->
+        <div class="content-section" id="user-population">
+            <h2 class="section-title">User Population</h2>
+            <p>In the initial project proposal, five user segments were defined; however, subsequent review revealed
+                that these segments did not adequately reflect the activity contexts relevant to our system's intended
+                use. Based on this reassessment, we redefined the user population into three primary segments: Bikers,
+                Pedestrians, and Individuals with Disabilities. These groups represent the main target audiences who
+                could benefit from hands-free, haptic-based navigation assistance.</p>
+
+            <p>For the present usability testing phase, the required participants are defined as follows:</p>
+            <p>
+                <li><b>18 years of age or older</b></li>
+            </p>
+            <p>
+                <li><b>Experienced cyclist or motorcyclist</b></li>
+            </p>
+            <p>
+                <li><b>Comfortable navigating while cycling or walking</b></li>
+            </p>
+
+            <p>This participant profile corresponds directly to the Biker and Pedestrian segments, which are the main
+                focus of the current test sessions. While the Individuals with Disabilities segment is not explicitly
+                targeted for recruitment at this stage, participation from this group remains welcome and encouraged
+                should volunteers be available. We recognize that some additional interface and hardware adaptations
+                would be necessary to fully accommodate specific accessibility needs, and these enhancements are planned
+                for future iterations once the core interactions have been validated.</p>
+        </div>
+
+        <!-- Usability Goals Section -->
+        <div class="content-section" id="usability-goals">
+            <h2 class="section-title">Usability Goals</h2>
+            <p>The usability evaluation for the Glove Guide computer prototype focuses primarily on the software
+                application, with an emphasis on how effectively it supports distraction-free navigation and intuitive
+                interaction. The following usability goals were selected because they directly support the project's
+                main objective: enabling users to receive navigation guidance through haptic cues while maintaining
+                attention on their surroundings.</p>
+
+            <p>While the physical components remain present during testing, this evaluation focuses on the user
+                interaction with the mobile application. The collected data will provide quantitative insights into how
+                efficiently and effectively users can interact with the system and how well the application supports
+                calm, attentive navigation.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Usability Goal</th>
+                        <th>Description</th>
+                        <th>Measurement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Efficiency</strong></td>
+                        <td>Evaluate how quickly users can respond to navigation cues generated by the application.</td>
+                        <td>Average <strong>reaction time</strong> (in seconds) between the onset of a haptic or audio
+                            signal and the user’s corresponding action.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Calm Technology</strong></td>
+                        <td>Assess how effectively the system minimizes visual distraction during navigation.</td>
+                        <td><strong>Number of times</strong> users check their phone while navigating.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Effectiveness</strong></td>
+                        <td>Determine the accuracy with which users interpret navigation cues.</td>
+                        <td>Number of <strong>missed or misunderstood haptic signals</strong> per task or session.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Learnability</strong></td>
+                        <td>Measure how easily users can learn to operate the application’s main functions.</td>
+                        <td><strong>Time required</strong> to complete key application tasks (e.g., selecting a
+                            destination, adjusting haptic settings) during the initial session.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Usability Test Procedure Section -->
+        <div class="content-section" id="test-procedure">
+            <h2 class="section-title">Usability Test Procedure</h2>
+
+            <p>The usability test will be conducted by a team of two to three examiners.</p>
+
+            <h3 class="subsection-title">Equipment</h3>
+            <p>In addition to the prototype described previously, the examiners will require a timer or stopwatch, pen
+                and paper for note-taking, and an iOS smartphone for running the application (to be provided if the
+                participant does not have one).</p>
+
+            <h3 class="subsection-title">Prototype Setup</h3>
+            <p>Before the test begins, the participant will be asked to wear the physical components—either the
+                lightweight fingerless gloves or the adjustable bracelets. The two vibration components are then
+                securely taped to the corresponding physical parts, maintaining the same relative positions as before
+                (<strong>left actuator</strong> to the left glove/bracelet, and <strong>right actuator</strong> to the
+                right one). The software application is installed on the participant’s own phone or, if needed, on a
+                preconfigured device provided by the examiners.</p>
+
+            <p>A <strong>moderator</strong> operates the switches of the haptic actuators. Using a reference of the
+                user-selected route, the moderator guides the participant throughout the test by activating and
+                deactivating the actuators to simulate haptic navigation cues.</p>
+
+            <h3 class="subsection-title">Examiner Roles and Conduct</h3>
+            <p>While the moderator manages the haptic signals, the other one or two examiners are responsible for
+                collecting both quantitative and qualitative data. They will record:</p>
+
+            <ul>
+                <li><strong>Time taken</strong> for the participant to react to a haptic signal</li>
+                <li><strong>Whether the participant checks their phone</strong> (Calm Technology metric)</li>
+                <li><strong>Number of missed or misunderstood signals</strong></li>
+                <li><strong>Time spent completing application-related tasks</strong></li>
+            </ul>
+
+            <p>Examiners will also note any observable user behaviors, confusion, or spontaneous feedback relevant to
+                usability.</p>
+
+            <h3 class="subsection-title">Instructions to Participants</h3>
+            <p>Participants are only to be given the task statements and any essential clarifications required to
+                perform them. Examiners must not provide verbal guidance on how to use the prototype, nor offer
+                explanations about system functions during the test.</p>
+
+            <h3 class="subsection-title">Examiner Limitations</h3>
+            <p>Examiners must avoid influencing the participants’ actions or expectations in any way. They should not
+                suggest corrections, reveal expected outcomes, or discuss design intentions. Measurements are to be
+                recorded in real time, beginning at the start of each task and ending upon task completion.</p>
+
+            <h3 class="subsection-title">Ethical and Safety Considerations</h3>
+            <p>Examiners should ensure that all participants are comfortable and informed of their right to withdraw at
+                any time. For tests conducted in biking or walking scenarios, appropriate safety precautions must be
+                taken—such as performing trials in a controlled or low-traffic environment. Participants should also be
+                given short breaks between tasks if needed, as long-distance walking, biking, or running can be
+                physically tiring, and extended focus on haptic feedback may also lead to temporary loss of attention.
+            </p>
+
+            <h3 class="subsection-title">Summary</h3>
+            <p>This procedure ensures that an independent evaluation team can reproduce the usability test consistently,
+                collect reliable quantitative data, and provide meaningful feedback on the prototype’s performance and
+                user experience.</p>
+        </div>
+
+        <!-- Reporting Section -->
+        <div class="content-section" id="reporting">
+            <h2 class="section-title">Reporting</h2>
+
+            <p><strong>Recording Instructions:</strong><br>
+                During each usability test session, examiners should record all relevant measurements systematically
+                using a standardized data table, as illustrated below. This ensures consistency across trials and
+                facilitates later quantitative analysis.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Time Spent on Application (s)</th>
+                        <th>Missed / Misinterpreted Signal (count)</th>
+                        <th>Reaction to Signal (s)</th>
+                        <th>Phone Check (count)</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. Start Route</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2. Known Route</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3. Unknown Route</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4. Dual Task</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 class="subsection-title">Measurement Guidelines</h3>
+            <ul>
+                <li><strong>Time Spent on Application (s):</strong> Begin timing once the task has been explained and
+                    confirmed as understood. Stop the timer when the participant successfully completes the task or
+                    abandons it.</li>
+                <li><strong>Missed / Misinterpreted Signal (count):</strong> Record each instance where the participant
+                    fails to respond to a haptic signal or responds incorrectly (e.g., turns right when a left-turn
+                    vibration is indicated).</li>
+                <li><strong>Reaction to Signal (s):</strong> When the moderator activates the haptic actuator, start the
+                    timer simultaneously and stop it once the participant initiates the turn.</li>
+                <li><strong>Phone Check (count):</strong> Note each instance in which the participant checks their phone
+                    during the navigation task.</li>
+                <li><strong>Comments:</strong> Record any noteworthy observations, such as confusion, hesitation, verbal
+                    remarks, or environmental factors affecting performance.</li>
+            </ul>
+
+            <h3 class="subsection-title">Reporting Format</h3>
+            <p>All collected data should be compiled into a consolidated results table identical in structure to the one
+                above. This format enables direct comparison across participants and tasks, supporting both quantitative
+                analysis and qualitative interpretation. Examiners are also encouraged to provide brief summary notes
+                for each participant highlighting observed behavioral patterns or usability challenges.</p>
+
+            <h3 class="subsection-title">Design Team Expectations and Potential Implications</h3>
+            <p>The design team expects the following baseline outcomes for satisfactory usability:</p>
+            <ul>
+                <li><strong>Time Spent on Application:</strong> ≤30 seconds on first use; ≤15 seconds once familiar with
+                    the interface.</li>
+                <li><strong>Missed / Misinterpreted Signal:</strong> ≤1 instance per navigation session.</li>
+                <li><strong>Reaction Time:</strong> ≤2 seconds after receiving a turning signal.</li>
+                <li><strong>Phone Check:</strong> ≤1 per navigation session.</li>
+            </ul>
+
+            <p>Deviations from these thresholds suggest potential usability issues, most likely related to the vibration
+                intensity or physical attachment quality (e.g., straps too loose, low actuator power, or user-adjusted
+                vibration too weak). These findings will directly guide further refinement of the prototype’s hardware
+                and feedback calibration.</p>
+
+            <h3 class="subsection-title">Summary</h3>
+            <p>This reporting structure ensures that all examiners collect and present data in a uniform and analyzable
+                format, allowing the design team to identify specific weaknesses in both the haptic design and user
+                interaction workflow.</p>
+        </div>
+
+        <!-- Usability Evaluation Section -->
+        <div class="content-section" id="usability-evaluation">
+            <h2 class="section-title">Usability Evaluation</h2>
+
+            <p><b>Evaluation Methodology:</b>
+                The usability evaluation will consist of a <b>heuristic evaluation</b> conducted by an independent group
+                of evaluators. Each evaluator will individually inspect the prototype—both the physical wearable and the
+                iOS application—against a defined set of usability heuristics. Evaluators will document any violations
+                or usability concerns and assign a <b>severity rating</b> (from 0 = no problem to 4 = usability
+                catastrophe) following Nielsen's standard severity scale.</p>
+
+            <p>After individual evaluations, the examiners will meet to <b>consolidate findings</b> and produce a
+                combined summary report highlighting recurring issues, design strengths, and suggested improvements.</p>
+
+            <h2>
+                <p><b>Evaluation Tasks:</b></p>
+            </h2>
+            To ensure consistent coverage across the prototype's main interaction paths, evaluators will complete the
+            following tasks before or during inspection:</p>
+
+            <p><b>1. Adjust physical wearable:</b> Fit the fingerless glove or adjustable bracelet to assess ease of
+                setup and comfort.</p>
+            <p><b>2. Search and select destination:</b> Use the app's interface to search for a destination and confirm
+                route selection.</p>
+            <p><b>3. Navigate a known route:</b> Follow haptic feedback cues along a familiar path.</p>
+            <p><b>4. Customize vibration settings:</b> Modify the vibration intensity and timing within the app's
+                customization menu.</p>
+            <p><b>5. Navigate an unknown route:</b> Use only haptic guidance to reach an unfamiliar destination.</p>
+            <p><b>6. Dual task:</b> Perform an additional attention task (e.g., holding a short conversation while
+                navigating) while navigating, to assess cognitive load and distraction resistance.</p>
+
+            <h2>
+                <p><b>Heuristics and Assessment Criteria:</b></p>
+            </h2>
+
+            <p>The evaluation will focus on the following heuristics, chosen for their relevance to a wearable haptic
+                navigation system:</p>
+
+            <p><b>Calm Technology:</b> The system should remain unobtrusive, allowing users to focus on the environment
+                rather than the device. Evaluation will note how often users feel compelled to check the phone or are
+                distracted by feedback.</p>
+
+            <p><b>Match Between the System and the Real World:</b> The vibration patterns and app icons should follow
+                intuitive real-world analogies (e.g., left-hand vibration → left turn). Evaluators will assess how
+                naturally users interpret these cues.</p>
+
+            <p><b>User Control and Freedom:</b> Users must be able to easily stop, restart, or adjust feedback intensity
+                and duration. The evaluation will verify the visibility and accessibility of these controls.</p>
+
+            <p><b>Recognition Rather Than Recall:</b> Interface elements and feedback patterns should be intuitive
+                enough that users do not need to memorize how to operate the system or interpret vibrations. Evaluators
+                will assess whether users can recognize functions and meanings immediately through design cues rather
+                than relying on prior memorization.</p>
+
+            <h2>
+                <p><b>Evaluation Output:</b>
+            </h2>
+            Each evaluator will submit an annotated checklist containing their heuristic ratings, observed issues, and
+            recommendations. The consolidated report will summarize:</p>
+
+            <p>
+                <li>Total number of violations per heuristic category</li>
+            </p>
+            <p>
+                <li>Mean severity ratings</li>
+            </p>
+            <p>
+                <li>Suggested design revisions</li>
+            </p>
+
+            <p><b>Summary:</b>
+                This evaluation plan provides independent examiners with clear procedures, task descriptions, and
+                criteria for judging usability. By combining heuristic inspection with focused task testing, it ensures
+                a comprehensive assessment of both the app's interface and its physical interaction design.</p>
+        </div>
+
+        <!-- Conclusion Section -->
+        <div class="content-section" id="conclusion">
+            <h2 class="section-title">Conclusion</h2>
+            <p>This milestone represents a significant step in the development of our glove-based haptic navigation
+                system. The computer prototype successfully integrates both hardware and software components to provide
+                a realistic sense of the final product's look and feel, allowing users to experience haptic guidance
+                with minimal reliance on Wizard-of-Oz techniques.</p>
+
+            <p>Through a combination of refined design decisions, detailed usability goals, and a comprehensive
+                evaluation framework, the project now establishes a solid foundation for independent usability testing.
+                The outlined test and reporting procedures ensure that quantitative and qualitative data can be
+                collected consistently, while the heuristic evaluation plan provides structured insights into the
+                system's intuitiveness and effectiveness.</p>
+
+            <p>Together with the accompanying user manual, this deliverable equips the evaluation team with the
+                information and tools necessary to assess the prototype independently, identify usability challenges,
+                and guide the next iteration toward a more refined, user-centered design.</p>
         </div>
     </main>
 
     <footer class="footer">
         <div class="container">
-            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>McGill University – ECSE Design Project (Fall 2025)</p>
             <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
         </div>
     </footer>

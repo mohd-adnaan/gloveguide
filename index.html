@@ -12,27 +12,44 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--dark);
+            background: var(--white);
         }
 
+        /* Navigation Styles */
         .navbar {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .top-nav {
-            border-bottom: 1px solid #e0e0e0;
-            padding: 0.75rem 0;
+            padding: 0;
         }
 
         .container {
@@ -51,19 +68,30 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            transition: transform 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .navbar-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             object-fit: cover;
+            box-shadow: var(--shadow-md);
         }
 
         .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
         /* Super Navigation */
@@ -71,7 +99,10 @@
             display: flex;
             list-style: none;
             gap: 0;
-            justify-content: center;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            flex: 1;
         }
 
         .super-nav-item {
@@ -81,25 +112,44 @@
         .super-nav-link {
             display: block;
             text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 1.25rem 1.75rem;
+            transition: all 0.3s ease;
             border-bottom: 3px solid transparent;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .super-nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .super-nav-link:hover::before,
+        .super-nav-link.active::before {
+            width: 100%;
         }
 
         .super-nav-link:hover,
         .super-nav-link.active {
-            color: #667eea;
-            background: #f8f9fa;
-            border-bottom-color: #667eea;
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
         }
 
         /* Sub Navigation */
         .sub-nav {
-            background: #f8f9fa;
-            padding: 0.5rem 0;
+            background: var(--light-gray);
+            padding: 0.75rem 0;
             display: none;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .sub-nav.active {
@@ -116,189 +166,304 @@
 
         .sub-nav-links a {
             text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            padding: 0.5rem 1.25rem;
-            transition: color 0.3s;
-            font-size: 0.95rem;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            position: relative;
         }
 
         .sub-nav-links a:hover,
         .sub-nav-links a.active {
-            color: #667eea;
+            color: var(--primary);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
         }
 
         main {
             flex: 1;
         }
 
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient);
             color: white;
-            padding: 4rem 0;
+            padding: 5rem 0;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            animation: fadeInUp 0.8s ease-out;
         }
 
         .subtitle {
             font-size: 1.5rem;
             opacity: 0.95;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
         .section {
-            padding: 4rem 0;
+            padding: 5rem 0;
+            position: relative;
         }
 
         .section-alt {
-            background: white;
+            background: var(--light-gray);
         }
 
         .section-title {
-            font-size: 2rem;
-            color: #2c3e50;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 3rem;
             text-align: center;
+            font-weight: 800;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
 
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* Feature Grid */
         .feature-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        @media (max-width: 1200px) {
-            .feature-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
         }
 
         .feature-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(79, 70, 229, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
         }
 
         .section-alt .feature-card {
-            background: #f8f9fa;
+            background: var(--white);
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
         }
 
         .feature-card h3 {
-            color: #3498db;
-            font-size: 1.4rem;
+            color: var(--primary);
+            font-size: 1.5rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .feature-card p {
-            color: #666;
+            color: var(--gray);
             line-height: 1.8;
+            font-size: 1.05rem;
         }
 
+        /* Content Section */
         .content-section {
             max-width: 900px;
             margin: 0 auto;
         }
 
+        .content-section p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.9;
+        }
+
+        /* Image Styles */
         .image-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
         }
 
         .image-card {
-            background: white;
-            border-radius: 8px;
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-md);
+            transition: all 0.4s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
         }
 
         .image-card img {
             width: 100%;
-            height: 300px;
+            height: 350px;
             object-fit: contain;
-            background: #f8f9fa;
+            background: var(--light-gray);
         }
 
         .caption {
-            padding: 1rem;
+            padding: 1.25rem;
             text-align: center;
-            color: #666;
+            color: var(--gray);
             font-style: italic;
+            font-size: 0.95rem;
         }
 
         .ai-attribution {
             text-align: center;
-            color: #999;
+            color: var(--gray);
             font-size: 0.9rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             font-style: italic;
         }
 
+        /* Highlight Box */
         .highlight-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--gradient);
             color: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            margin: 3rem 0;
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            padding: 3rem;
+            border-radius: 20px;
+            margin: 4rem 0;
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.3);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
         }
 
         .highlight-box h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 2.25rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
         }
 
         .highlight-box p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
 
         .highlight-box ul {
             list-style: none;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
         }
 
         .highlight-box li {
-            font-size: 1.1rem;
-            padding: 0.5rem;
+            font-size: 1.15rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            font-weight: 600;
         }
 
+        /* Footer */
         .footer {
-            background: #2c3e50;
+            background: var(--dark);
             color: white;
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
             margin-top: auto;
         }
 
         .footer p {
-            margin: 0.3rem 0;
+            margin: 0.5rem 0;
             opacity: 0.9;
+            font-size: 0.95rem;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             .nav-flex {
                 flex-direction: column;
@@ -328,8 +493,43 @@
             }
 
             .section {
-                padding: 2rem 0;
+                padding: 3rem 0;
             }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .highlight-box {
+                padding: 2rem;
+            }
+
+            .highlight-box h2 {
+                font-size: 1.75rem;
+            }
+
+            .highlight-box ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body {
+            animation: fadeIn 0.5s ease-in;
         }
     </style>
 </head>
@@ -341,33 +541,33 @@
                 <div class="logo">
                     <a href="index.html"
                         style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                        <span class="brand">GloveGuide</span>
+                        <img src="images/logo-glove-guide.png" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">gloveguide</span>
                     </a>
                 </div>
+
+                <!-- Super Navigation -->
+                <nav>
+                    <ul class="super-nav">
+                        <li class="super-nav-item">
+                            <a href="#" class="super-nav-link active" data-section="observations">Observation & Proposals</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="pages/low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="pages/computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="pages/formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="pages/high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-
-        <!-- Super Navigation -->
-        <nav>
-            <ul class="super-nav">
-                <li class="super-nav-item">
-                    <a href="#" class="super-nav-link active" data-section="observations">Observation & Proposals</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="pages/low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="pages/computer-prototype.html" class="super-nav-link">Computer Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="pages/formative-feedback.html" class="super-nav-link">Formative Feedback</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="pages/high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
-                </li>
-            </ul>
-        </nav>
 
         <!-- Sub Navigation -->
         <div class="sub-nav active">
@@ -384,7 +584,7 @@
 
     <main>
         <section class="hero">
-            <div class="container">
+            <div class="container hero-content">
                 <h1>🧤 Glove Guide</h1>
                 <p class="subtitle">A Wearable Navigation System for Cyclists</p>
             </div>

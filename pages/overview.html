@@ -12,105 +12,48 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
+            color: var(--dark);
+            background: var(--white);
         }
 
+        /* Navigation Styles */
         .navbar {
-            background: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         }
 
         .top-nav {
-            border-bottom: 1px solid #e0e0e0;
-            padding: 0.75rem 0;
-        }
-
-        /* Super Navigation */
-        .super-nav {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            justify-content: center;
-        }
-
-        .super-nav-item {
-            position: relative;
-        }
-
-        .super-nav-link {
-            display: block;
-            text-decoration: none;
-            color: #666;
-            font-weight: 500;
-            padding: 1rem 1.5rem;
-            transition: all 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-
-        .super-nav-link:hover,
-        .super-nav-link.active {
-            color: #667eea;
-            background: #f8f9fa;
-            border-bottom-color: #667eea;
-        }
-
-        /* Sub Navigation */
-        .sub-nav {
-            background: #f8f9fa;
-            padding: 0.5rem 0;
-        }
-
-        .sub-nav-links {
-            display: flex;
-            list-style: none;
-            gap: 0;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .sub-nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            padding: 0.5rem 1.25rem;
-            transition: color 0.3s;
-            font-size: 0.95rem;
-        }
-
-        .sub-nav-links a:hover,
-        .sub-nav-links a.active {
-            color: #667eea;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .super-nav {
-                flex-direction: column;
-            }
-
-            .super-nav-link {
-                text-align: center;
-            }
-
-            .sub-nav-links {
-                flex-direction: column;
-                align-items: center;
-            }
+            padding: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem;
         }
@@ -125,37 +68,148 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            transition: transform 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .navbar-logo {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
             object-fit: cover;
+            box-shadow: var(--shadow-md);
         }
 
         .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
         }
 
-        .nav-links {
+        /* Super Navigation */
+        .super-nav {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 0;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            flex: 1;
         }
 
-        .nav-links a {
+        .super-nav-item {
+            position: relative;
+        }
+
+        .super-nav-link {
+            display: block;
             text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 1.25rem 1.75rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-size: 0.95rem;
+            position: relative;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #3498db;
+        .super-nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .super-nav-link:hover::before,
+        .super-nav-link.active::before {
+            width: 100%;
+        }
+
+        .super-nav-link:hover,
+        .super-nav-link.active {
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        /* Sub Navigation */
+        .sub-nav {
+            background: var(--light-gray);
+            padding: 0.75rem 0;
+            display: block;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: var(--primary);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .super-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .super-nav-link {
+                text-align: center;
+            }
+
+            .sub-nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .content-section {
+                padding: 1.5rem;
+            }
         }
 
         main {
@@ -356,40 +410,40 @@
                 <div class="logo">
                     <a href="../index.html"
                         style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
-                        <img src="../images/glove_guide.jpeg" alt="Glove Guide Logo" class="navbar-logo" />
-                        <span class="brand">GloveGuide</span>
+                        <img src="../images/logo-glove-guide.png" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">gloveguide</span>
                     </a>
                 </div>
+
+                <!-- Super Navigation -->
+                <nav>
+                    <ul class="super-nav">
+                        <li class="super-nav-item">
+                            <a href="../index.html" class="super-nav-link active">Observation & Proposals</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
-
-        <!-- Super Navigation -->
-        <nav>
-            <ul class="super-nav">
-                <li class="super-nav-item">
-                    <a href="../index.html" class="super-nav-link active">Observation & Proposals</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
-                </li>
-                <li class="super-nav-item">
-                    <a href="high-fidelity.html" class="super-nav-link">High Fidelity Prototype</a>
-                </li>
-            </ul>
-        </nav>
 
         <!-- Sub Navigation -->
         <div class="sub-nav">
             <div class="container">
                 <ul class="sub-nav-links">
                     <li><a href="../index.html">Home</a></li>
-                    <li><a href="overview.html">Overview</a></li>
+                    <li><a href="overview.html" class="active">Overview</a></li>
                     <li><a href="system-design.html">System Design</a></li>
                     <li><a href="ethics.html">Ethics</a></li>
                 </ul>
@@ -417,15 +471,15 @@
             </p>
 
             <ul class="personas-list">
-                <li><strong>1. High-Frequency Users</strong> – Individuals who cycle regularly, whether for commuting or
+                <li><strong>1. High-Frequency Users</strong> â€“ Individuals who cycle regularly, whether for commuting or
                     leisure.</li>
-                <li><strong>2. Special Care Users</strong> – Individuals requiring additional navigational support, such
+                <li><strong>2. Special Care Users</strong> â€“ Individuals requiring additional navigational support, such
                     as older adults or those with visual impairments.</li>
-                <li><strong>3. Economical Users</strong> – Individuals who avoid alternative transportation due to cost,
+                <li><strong>3. Economical Users</strong> â€“ Individuals who avoid alternative transportation due to cost,
                     sustainability concerns, or traffic avoidance.</li>
-                <li><strong>4. High-Skilled Users</strong> – Experienced cyclists seeking efficient and safe navigation.
+                <li><strong>4. High-Skilled Users</strong> â€“ Experienced cyclists seeking efficient and safe navigation.
                 </li>
-                <li><strong>5. Non-Cyclists</strong> – Pedestrians and runners, whose lower travel speeds do not
+                <li><strong>5. Non-Cyclists</strong> â€“ Pedestrians and runners, whose lower travel speeds do not
                     eliminate the risk of distraction.</li>
             </ul>
 
@@ -461,8 +515,8 @@
                             device
                             securely in her pocket.</li>
                         <li>Equipped with a helmet and Glove Guide, she begins her ride.</li>
-                        <li>Upon approaching an intersection, Alice maintains her standard safety routine—checking for
-                            vehicles and pedestrians—while receiving haptic feedback from her gloves.
+                        <li>Upon approaching an intersection, Alice maintains her standard safety routineâ€”checking for
+                            vehicles and pedestriansâ€”while receiving haptic feedback from her gloves.
                             <ul>
                                 <li>A vibration on the left glove indicates a left turn, which she executes after
                                     ensuring
@@ -508,7 +562,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>McGill University — ECSE Design Project (Fall 2025)</p>
+            <p>McGill University â€” ECSE Design Project (Fall 2025)</p>
             <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
         </div>
     </footer>
