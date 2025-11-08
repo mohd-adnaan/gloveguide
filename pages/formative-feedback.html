@@ -608,6 +608,62 @@
                     identifying issues according to the five project heuristics and rating their severity on a 0–4
                     scale. Findings were then consolidated into a shared summary for the design team.</p>
 
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Heuristic Violated</th>
+                            <th>Issue (concise)</th>
+                            <th>Evidence / Representative note</th>
+                            <th>Severity (0–4)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>H1</td>
+                            <td>User Autonomy & Control</td>
+                            <td>Slow Scrolling sometimes blocks scrolling entirely rather than slowing it</td>
+                            <td>Multiple evaluators reproduced: when Slow Scrolling triggered, touch input started behaving randomly. The screen might scroll up or down unpredictably.</td>
+                            <td><span class="severity-badge severity-critical">4 (Critical)</span></td>
+                        </tr>
+                        <tr>
+                            <td>H2</td>
+                            <td>Balance between Intervention & Flow</td>
+                            <td>Monochrome activation is sudden and startling</td>
+                            <td>The screen shifted instantly to grayscale. One evaluator commented they were briefly disoriented. Activation had no transition or soft cue.</td>
+                            <td><span class="severity-badge severity-major">3 (Major)</span></td>
+                        </tr>
+                        <tr>
+                            <td>H3</td>
+                            <td>Clarity of Feedback & Awareness Cues</td>
+                            <td>Interventions lack signs for the user to foresee it</td>
+                            <td>Evaluator quote: "Monochrome came on — I got surprised at first." No predictive indicator or gradual cue signaling that an intervention was about to activate.</td>
+                            <td><span class="severity-badge severity-major">3 (Major)</span></td>
+                        </tr>
+                        <tr>
+                            <td>H4</td>
+                            <td>Balance between Intervention & Flow</td>
+                            <td>Interventions interrupt focused sessions</td>
+                            <td>Observed: intervention triggered during a concentrated activity. Evaluator comment: "This came at a bad time."</td>
+                            <td><span class="severity-badge severity-major">3 (Major)</span></td>
+                        </tr>
+                        <tr>
+                            <td>H5</td>
+                            <td>Clarity of Feedback & Awareness Cues</td>
+                            <td>Lack of intervention demonstration / visualization</td>
+                            <td>Evaluator quoted: "A short GIF next to each intervention would explain better than just plain text about the functionalities."</td>
+                            <td><span class="severity-badge severity-minor">2 (Minor)</span></td>
+                        </tr>
+                        <tr>
+                            <td>H6</td>
+                            <td>Consistency of Visual & Behavioral Patterns</td>
+                            <td>Time limits setting displays more restricted than shown</td>
+                            <td>The bar for setting the daily limit time of each app suggests free numeric choice, but in fact, it only accepts multiples of 15 minutes.</td>
+                            <td><span class="severity-badge severity-minor">2 (Minor)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <h3 class="subsection-title">Severity Overview</h3>
 
                 <div class="highlight-box">
@@ -697,6 +753,7 @@
 
                 <p><strong>Gender distribution:</strong> 5 women, 4 men, 1 non-binary participant.</p>
                 <p><strong>Student status:</strong> 7 undergraduate, 2 graduate, 1 recent graduate.</p>
+                <p><strong>Student status:</strong> Average reported social media use: 3.8 hours per day.</p>
                 <p>All participants reported frequent engagement with short-form platforms such as TikTok, Instagram,
                     and YouTube Shorts.</p>
 
@@ -723,34 +780,54 @@
                 </div>
 
                 <h3 class="subsection-title">Quantitative Results</h3>
-                <table>
+                <table class="data-table">
                     <thead>
                         <tr>
                             <th>Metric</th>
-                            <th>Value</th>
-                            <th>Note</th>
+                            <th>Mean</th>
+                            <th>Observation</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Task Completion Rate</strong></td>
-                            <td>100%</td>
-                            <td>All participants completed all tasks</td>
+                            <td><strong>Time to first pause (s)</strong></td>
+                            <td>312.5</td>
+                            <td>Participants paused naturally around 5 minutes into use.</td>
                         </tr>
                         <tr>
-                            <td><strong>Average Intrusiveness Rating*</strong></td>
-                            <td>2.3 / 5</td>
-                            <td>Lower score indicates higher perceived intrusiveness</td>
+                            <td><strong>Total session duration (s)</strong></td>
+                            <td>602.8</td>
+                            <td>Most completed full sessions with minor variations in pace.</td>
                         </tr>
                         <tr>
-                            <td><strong>Average Comfort Rating</strong></td>
-                            <td>3.4 / 5</td>
-                            <td>Indicates moderate comfort level</td>
+                            <td><strong>Intervention engagement count</strong></td>
+                            <td>2.4</td>
+                            <td>Average number of times participants actively engaged with cues (e.g., responding to timer or prompt).</td>
                         </tr>
                         <tr>
-                            <td><strong>Average Satisfaction Rating</strong></td>
-                            <td>3.2 / 5</td>
-                            <td>Suggests general approval with room for improvement</td>
+                            <td><strong>Intervention dismissals</strong></td>
+                            <td>1.6</td>
+                            <td>Some participants ignored or closed subtle prompts when absorbed in feed.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Return frequency (within 1 hour post-test)</strong></td>
+                            <td>0.35</td>
+                            <td>7 of 20 participants reopened the prototype briefly within an hour.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Comfort rating (1–5)</strong></td>
+                            <td>4.1</td>
+                            <td>Users reported the interface felt comfortable and calming.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intrusiveness rating (1–5)</strong></td>
+                            <td>2.8</td>
+                            <td>Moderate intrusiveness — mainly during sudden intervention changes.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Satisfaction rating (1–5)</strong></td>
+                            <td>3.9</td>
+                            <td>Positive toward concept; mixed feedback on smoothness and transitions.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -883,13 +960,15 @@
                         </div>
                     </div>
                     <div class="document-field">
-                        <span class="field-label">Have you ever tried to limit your social media use?</span>
+                        <span class="field-label">Have you ever tried to limit your social media use through built-in app limits or third-party tools? 
+?</span>
                         <div class="field-value">
                             <span class="checkbox-item">☑ Yes</span>
                         </div>
                     </div>
                     <div class="document-field">
-                        <span class="field-label">If yes, which methods or tools have you used?</span>
+                        <span class="field-label">If yes, which methods or tools have you used?(Examples: Screen Time, Digital Wellbeing, One Sec, Forest, Freedom, etc.) 
+</span>
                         <div class="field-value">Screen Time (iOS), occasionally enabling app limits; used "Forest" once
                             to focus during study sessions.</div>
                     </div>
@@ -975,30 +1054,90 @@
                 <div class="document-example">
                     <div class="document-header">User Tasks</div>
 
-                    <table>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Task</th>
+                                <th>Completed</th>
+                                <th>Time (s)</th>
+                                <th>Difficulties</th>
+                                <th>Observations</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             <tr>
-                                <td><strong>Time to first pause</strong></td>
-                                <td>267.1 seconds</td>
+                                <td><strong>User Log In</strong></td>
+                                <td>Yes</td>
+                                <td>24.6</td>
+                                <td>None</td>
+                                <td>Participants located the login fields immediately, entered credentials without hesitation, and successfully accessed the main interface. Verbally noted: "Layout looks clean."</td>
                             </tr>
                             <tr>
-                                <td><strong>Total session duration</strong></td>
-                                <td>906.4 seconds</td>
+                                <td><strong>Explore the Dashboard</strong></td>
+                                <td>Yes</td>
+                                <td>42.8</td>
+                                <td>None</td>
+                                <td>Participants scrolled through panels, hovered over icons briefly, and commented, "Okay, I can see time tracking here." Navigation appeared confident and deliberate.</td>
                             </tr>
                             <tr>
-                                <td><strong>Intervention engagement count</strong></td>
-                                <td>3</td>
+                                <td><strong>Explore the Controls</strong></td>
+                                <td>Yes</td>
+                                <td>37.2</td>
+                                <td>None</td>
+                                <td>Participants opened the Controls section promptly. Read feature labels aloud and said, "These seem easy to toggle." Maintained steady engagement with no visible confusion.</td>
                             </tr>
                             <tr>
-                                <td><strong>Intervention dismissals</strong></td>
-                                <td>2</td>
+                                <td><strong>Explore the Statistics</strong></td>
+                                <td>Yes</td>
+                                <td>51.3</td>
+                                <td>None</td>
+                                <td>Participants reviewed graphs and tables attentively, stating, "This shows my usage trends… nice visualization." No issues reported. Demonstrated comprehension of data presentation.</td>
                             </tr>
                             <tr>
-                                <td><strong>Return frequency</strong></td>
-                                <td>0</td>
+                                <td><strong>Explore the Settings</strong></td>
+                                <td>Yes</td>
+                                <td>46.5</td>
+                                <td>None</td>
+                                <td>Participants navigated through options methodically. Observed to pause slightly before returning to the main menu. Commented: "Everything's where I expected."</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Set Time Limits</strong></td>
+                                <td>Yes</td>
+                                <td>58.9</td>
+                                <td>None</td>
+                                <td>Participants accessed Time Limits, selected daily limit, and confirmed settings. Read the confirmation message aloud and said, "Looks saved." Smooth completion, no backtracking.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Enable an Intervention in Controls</strong></td>
+                                <td>Yes</td>
+                                <td>63.4</td>
+                                <td>None</td>
+                                <td>Participants chose the "Monochrome" intervention, verified that others remained off, and remarked, "It definitely looks duller—maybe that helps." Followed instructions accurately.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Check Time Usage</strong></td>
+                                <td>Yes</td>
+                                <td>44.7</td>
+                                <td>None</td>
+                                <td>Participants accessed Statistics again, reviewed weekly breakdowns, and commented: "This is clear, easy to read." Maintained focus, no navigation errors.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Watch simulated reels (additional)</strong></td>
+                                <td>Yes</td>
+                                <td>75.3</td>
+                                <td>Understanding and reacting to interventions.</td>
+                                <td>Participants looked confused at first when the "Monochrome" activated, but then quickly understood, and looked a bit frustrated when "Slow scrolling" was blocking scrolling instead.</td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <div style="margin-top: 1rem;">
+                        <p><strong>Time to first pause:</strong> <b>267.1 s</b></p>
+                        <p><strong>Total session duration:</strong> <b>906.4</b></p>
+                        <p><strong>Intervention engagement count:</strong> <b>3</b></p>
+                        <p><strong>Intervention dismissals:</strong> <b>2</b></p>
+                        <p><strong>Return frequency:</strong> <b>0</b></p>
+                    </div>
                 </div>
 
                 <div class="document-example">
@@ -1149,6 +1288,45 @@
                     usability goals.</p>
 
                 <p>Below is an assessment of how each usability goal was addressed within the combined plan:</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Usability Goal</th>
+                            <th>Assessment of Coverage in Test Plan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Learnability</strong></td>
+                            <td>Effectively addressed. The eight structured tasks examined first-time interactions, supported by measures such as task completion time, error counts, and facilitator assistance. The think-aloud protocol successfully revealed users' evolving mental models.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Satisfaction</strong></td>
+                            <td>Well supported. Post-test questionnaires captured user comfort, perceived intrusiveness, and clarity. Observer notes complemented these metrics with qualitative emotional cues, allowing a rounded assessment of satisfaction.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Utility</strong></td>
+                            <td>Partially addressed. While post-test questions explored awareness and intrusiveness, no direct behavioral metric existed to measure reduction in mindless scrolling. A longer-term study or objective activity tracking would be needed to evaluate this goal fully.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Memorability</strong></td>
+                            <td>Not adequately addressed. The single-session format prevented evaluation of retention or re-learning after nonuse. Multi-session testing with delayed re-exposure would be required to measure this goal.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Efficiency</strong></td>
+                            <td>Partially addressed. Timing and error metrics provided general indicators of efficiency, but no baseline comparison existed between normal and intervention-active scrolling. A control condition would improve interpretability.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Sustainability</strong></td>
+                            <td>Weakly addressed. The current plan relied on post-test intentions (e.g., likelihood to continue using the app) rather than longitudinal behavioral data. Long-term engagement tracking and interviews would provide more meaningful evidence.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7. Trust and Agency</strong></td>
+                            <td>Strongly addressed. The combination of heuristic evaluation, observer notes, and open-ended interview items effectively captured whether users felt empowered or constrained by the interventions.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <div class="highlight-box">
                     <p>Overall, the test plan was methodologically sound and comprehensive in structure, meeting core
