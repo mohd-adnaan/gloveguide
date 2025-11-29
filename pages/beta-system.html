@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beta System - Glove Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4F46E5;
+            --primary-dark: #4338CA;
+            --secondary: #06B6D4;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --gray: #6B7280;
+            --light-gray: #F3F4F6;
+            --white: #FFFFFF;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--white);
+        }
+
+        /* Navigation Styles */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .top-nav {
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: transform 0.3s ease;
+            padding: 1rem 0;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .navbar-logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: var(--shadow-md);
+        }
+
+        .brand {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        /* Super Navigation */
+        .super-nav {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: flex-end;
+            margin: 0;
+            padding: 0;
+            flex: 1;
+        }
+
+        .super-nav-item {
+            position: relative;
+        }
+
+        .super-nav-link {
+            display: block;
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 1.25rem 1.75rem;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .super-nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .super-nav-link:hover::before,
+        .super-nav-link.active::before {
+            width: 100%;
+        }
+
+        .super-nav-link:hover,
+        .super-nav-link.active {
+            color: var(--primary);
+            background: rgba(79, 70, 229, 0.05);
+        }
+
+        /* Sub Navigation */
+        .sub-nav {
+            background: var(--light-gray);
+            padding: 0.75rem 0;
+            display: none;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .sub-nav.active {
+            display: block;
+        }
+
+        .sub-nav-links {
+            display: flex;
+            list-style: none;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .sub-nav-links a {
+            text-decoration: none;
+            color: var(--gray);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .sub-nav-links a:hover,
+        .sub-nav-links a.active {
+            color: var(--primary);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        main {
+            flex: 1;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="white" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: white;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1200px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            font-weight: 800;
+            padding-bottom: 0.75rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .subsection-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            font-weight: 700;
+        }
+
+        .sub-subsection-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .content-section p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+            color: var(--gray);
+            font-size: 1.05rem;
+        }
+
+        .content-section ul,
+        .content-section ol {
+            margin: 1.5rem 0 1.5rem 2rem;
+            line-height: 1.8;
+        }
+
+        .content-section li {
+            margin-bottom: 0.75rem;
+            color: var(--gray);
+        }
+
+        .content-section strong {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .content-section em {
+            color: var(--primary);
+            font-style: italic;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1.75rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .new-section {
+            background: rgba(16, 185, 129, 0.05);
+            border-left: 4px solid #10b981;
+            padding: 1.75rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        /* Image Styling */
+        .image-center {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .image-center img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .super-nav {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .super-nav-link {
+                text-align: center;
+            }
+
+            .sub-nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        body {
+            animation: fadeIn 0.5s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="top-nav">
+            <div class="container nav-flex">
+                <div class="logo">
+                    <a href="../index.html"
+                        style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none;">
+                        <img src="../images/logo-glove-guide.png" alt="Glove Guide Logo" class="navbar-logo" />
+                        <span class="brand">gloveguide</span>
+                    </a>
+                </div>
+
+                <nav>
+                    <ul class="super-nav">
+                        <li class="super-nav-item">
+                            <a href="../index.html" class="super-nav-link">Observation & Proposals</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="low-fidelity.html" class="super-nav-link">Low-Fidelity Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="computer-prototype.html" class="super-nav-link">Computer Prototype</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="formative-feedback.html" class="super-nav-link">Formative Feedback</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="alpha-system.html" class="super-nav-link">Alpha System</a>
+                        </li>
+                        <li class="super-nav-item">
+                            <a href="beta-system.html" class="super-nav-link active">Beta System</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="sub-nav active">
+            <div class="container">
+                <ul class="sub-nav-links">
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#design-evolution">Design Evolution</a></li>
+                    <li><a href="#prototype-revision">Prototype Revision</a></li>
+                    <li><a href="#user-manual">User Manual</a></li>
+                    <li><a href="#project-reflection">Project Reflection</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Beta System</h1>
+    </div>
+
+    <main class="container">
+        <div class="content-section" id="introduction">
+            <h2 class="section-title">Introduction</h2>
+            <p>This report summarizes the final stage of our semester-long project, outlining how our design evolved from initial observations to the fully developed Beta prototype. Building on early insights about distraction and situational awareness during urban navigation, we refined our concepts through iterative prototyping, user testing, and targeted revisions. The Beta prototype now reflects a cohesive solution shaped by clear usability goals, technical improvements, and iterative testing. In addition to system development, we refined the user manual and installation guide to ensure the final product is not only functional but also accessible and easy to adopt.</p>
+        </div>
+
+        <div class="content-section" id="design-evolution">
+            <h2 class="section-title">Design Evolution</h2>
+            <p>As the project progressed toward the Beta System, several targeted refinements were made to enhance both usability and technical feasibility. Building on insights from user testing, formative feedback, and our own evaluation of system limitations, the design evolved to better support intuitive interaction and reliable performance. The following subsections outline the major changes implemented after the Alpha Prototype and the rationale behind each decision.</p>
+
+            <h3 class="subsection-title">Vibration Intensity</h3>
+            <p>In the Beta system, vibration intensity is now controlled through the <strong>number of active vibration actuators</strong> rather than a continuous intensity slider. Users can choose between predefined levels, such as activating 1 or 2 all available actuators, to achieve the desired strength of haptic feedback.</p>
+            <div class="highlight-box">
+                <p><strong>Rationale:</strong> This change was made primarily due to <strong>feasibility limitations</strong> in the Alpha prototype. Implementing smooth, continuous intensity control requires more advanced hardware knowledge and motor-driver integration than our current team is equipped to handle. By contrast, selecting the number of actuators is well within our implementation capability while still giving users meaningful control over feedback strength. This approach ensures consistent performance across devices and reduces the risk of calibration errors that could occur with more complex intensity-modulation algorithms.</p>
+            </div>
+
+            <h3 class="subsection-title">Touch Map</h3>
+            <p>We added the ability for users to <strong>select their destination by tapping directly on the map</strong>, instead of relying solely on the search bar. This gives users an alternative and more visual method of choosing where they want to go.</p>
+            <div class="highlight-box">
+                <p><strong>Rationale:</strong> This change directly enhances the <strong>usability</strong> of the system by increasing both <strong>ease of use</strong> and <strong>interaction efficiency</strong>. During Alpha testing, users noted that searching by text alone was sometimes inconvenient—especially when multiple destinations have similar names or when the exact name of the destination was unknown. Allowing users to tap the map removes these barriers and provides a more <strong>reliable and straightforward</strong> method of input. This reduces user effort, speeds up route setup, and aligns with common navigation-app patterns, ultimately improving the system's overall <strong>usability</strong> without introducing significant additional complexity.</p>
+            </div>
+
+            <h3 class="subsection-title">Auto-pairing</h3>
+            <p>We implemented an automatic pairing feature that allows the system to reconnect to the user’s Guide Glove once the device has been previously paired and remembered. Instead of manually searching for and selecting the glove each time, users now have a streamlined setup process where the connection is re-established automatically when the glove is powered on and within range.</p>
+            <div class="highlight-box">
+                <p><strong>Rationale:</strong> This refinement significantly improves <strong>ease of use</strong> by reducing repetitive setup steps that users found inconvenient during testing. Automatic pairing removes unnecessary interaction effort and contributes to a more <strong>efficient</strong> and <strong>seamless user experience</strong>, especially for returning users who expect quick startup behavior. By minimizing manual configuration, the system becomes more <strong>reliable</strong> during daily use, ensuring users can begin their navigation tasks with minimal friction.</p>
+            </div>
+        </div>
+
+        <div class="content-section" id="prototype-revision">
+            <h2 class="section-title">Prototype Revision</h2>
+            <p>The Beta System of Glove Guide builds upon the Alpha prototype by further refining both functionality and usability while maintaining alignment with the design objectives outlined in our original project proposal. Although the core structure of the system—comprising the physical parts, electrical parts, and software parts—remains consistent, several targeted improvements were implemented to increase completeness, reliability, and user independence. These refinements arose from user feedback, formative evaluation, and insights gained during extended implementation.</p>
+
+            <h3 class="subsection-title">Physical Parts</h3>
+            <p>The physical design of the Beta prototype continues to rely on the glove form factor established in earlier stages. User feedback from the Alpha testing phase did not suggest replacing the glove-based design, and the hardware configuration required for delivering directional haptic cues remains best suited to this form. While test participants noted preferences regarding power source sizing, these considerations do not compromise core functionality and are therefore preserved for future development cycles beyond the Beta stage. As such, the physical components remain stable and continue to support the interaction goals effectively.</p>
+
+            <h3 class="subsection-title">Electrical Parts</h3>
+            <p>The electrical subsystem in the Beta System builds upon the stable wireless architecture introduced in the Alpha prototype, continuing to use ESP32 microcontrollers to handle Bluetooth communication between the gloves and the mobile application.</p>
+            <p>The most notable change to the electrical configuration is the <strong>addition of extra vibration actuators</strong>, implemented to support the new actuator-based intensity control feature introduced in the design evolution. Rather than relying on a single motor per glove, the Beta prototype now includes multiple actuators that can be selectively activated to produce different intensity levels. This modification aligns directly with both feasibility constraints and the intended user experience: the hardware remains simple and reliable while enabling a more flexible haptic output range. Aside from the integration of these additional motors, no further alterations to the wiring layout or microcontroller setup were required. The electrical system remains fully functional, stable, and capable of supporting all interactions within the Beta System.</p>
+
+            <h3 class="subsection-title">Software Parts</h3>
+            <p>The software subsystem in the Beta System retains the overall architecture established in the Alpha prototype, but now incorporates several refinements that improve interaction quality and bring the system closer to full functional completeness. These updates primarily focus on enhancing navigation usability, streamlining device setup, and improving configuration flexibility. Features such as actuator-based intensity selection, touch-based destination selection, and automatic device pairing were introduced based on user feedback and design evolution decisions. Despite these additions, no major structural redesign was required the core logic of route generation, Bluetooth communication, and haptic signaling remains consistent with earlier versions. The Beta software therefore delivers a more polished and efficient user experience while maintaining continuity with the system’s original design objectives.</p>
+
+            <h3 class="subsection-title">Integration and Functionality</h3>
+            <p>The Beta Prototype integrates the physical, electrical, and software components into a cohesive system that enables users to navigate using haptic guidance alone. With the updated actuators, improved software interactions, and stable wireless communication, all parts of the prototype function together without external moderation. Users wear the gloves, pair them with the app, select a destination, and receive directional cues through vibration patterns as they move.</p>
+            <p>More importantly, the Beta System remains firmly aligned with the course objective of <strong>enhancing users as humans</strong>. By shifting navigation away from screens and audio cues—which often impose cognitive load, distract attention, or reduce situational awareness—the Glove Guide supports more natural, intuitive, and human-centric interaction. It allows cyclists and runners to remain visually engaged with their environment and auditorily aware of traffic or hazards, while still benefiting from clear, reliable navigation feedback. In this way, the functionality not only meets the project’s original goals but also demonstrates how assistive technology can extend human capability without demanding more attention or effort from the user.</p>
+        </div>
+
+        <div class="content-section" id="user-manual">
+            <h2 class="section-title">Refinement of User Manual or Installation Guide</h2>
+            
+            <h3 class="subsection-title">Configuring Settings</h3>
+            
+            <h4 class="sub-subsection-title">Accessing Settings</h4>
+            <ol>
+                <li>Tap the gear icon in the top right corner</li>
+                <li>The settings screen opens with multiple configuration options</li>
+            </ol>
+
+            <h3 class="subsection-title">Haptic Settings</h3>
+            
+            <h4 class="sub-subsection-title">Haptic Intensity</h4>
+            <ul>
+                <li>Buttons for selecting 1 or 2 vibration motors</li>
+                <li>Default setting: 1</li>
+                <li>Controls the strength of vibration feedback</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Test Connection</h4>
+            <ul>
+                <li>Buttons for testing left and right vibration after pairing</li>
+                <li>Clicking on them will activate the haptics</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Lead Time</h4>
+            <ul>
+                <li>Set how early you receive turn vibrations</li>
+                <li>Range: 0-20 seconds before the turn</li>
+                <li>Adjusts based on your speed and reaction preferences</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Progressive Intensity (Removed)</h4>
+            <ul>
+                <li>Toggle switch (Green = ON)</li>
+                <li>When enabled, vibrations gradually increase as you approach turns</li>
+                <li>Helps gauge distance to upcoming turn</li>
+            </ul>
+
+            <h3 class="subsection-title">Bluetooth Connection</h3>
+            <ul>
+                <li>Device Status: Shows “Connected” or “Disconnected”</li>
+                <li>Connect Button: Blue button to initiate pairing</li>
+            </ul>
+
+            <h3 class="subsection-title">Navigation Preferences</h3>
+            
+            <h4 class="sub-subsection-title">Default Transportation Mode</h4>
+            <ul>
+                <li>Choose between Walking or Cycling</li>
+                <li>Sets your preferred mode for all new routes</li>
+                <li>Can be changed per journey</li>
+            </ul>
+
+            <h3 class="subsection-title">About Section</h3>
+            <ul>
+                <li>Version: 1.0.0</li>
+                <li>App name: Glove Guide</li>
+                <li>General information about the app.</li>
+            </ul>
+
+            <h3 class="subsection-title">Searching for Destinations</h3>
+
+            <h4 class="sub-subsection-title">Using the Touch Map function</h4>
+            <p><strong>Step 1:</strong> Find your destination on the map</p>
+            <p><strong>Step 2:</strong> Tap/Touch the location on the map</p>
+            <p><strong>Step 3:</strong> Start Navigation</p>
+            <ul>
+                <li>Select your navigation mode</li>
+                <li>ETA, duration, and distance will be shown</li>
+                <li>Press Green “Start Navigation” button</li>
+            </ul>
+            <p><strong>Step 4:</strong> The map will center on your selection and navigation is started</p>
+
+            <h4 class="sub-subsection-title">Using the Search Function</h4>
+            <p><strong>Step 1: Access the Search Bar</strong></p>
+            <p>Tap the search bar at the bottom of the screen</p>
+            <p><strong>Step 2: Search for Locations</strong></p>
+            <ul>
+                <li>Type your destination (e.g. “McGill”)</li>
+                <li>View search suggestions that appear:
+                    <ul>
+                        <li>Recent Searches</li>
+                        <li>Nearby Locations</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Step 3:</strong> Select your destination from the list</p>
+            <p><strong>Step 4:</strong> The map will center on your selection</p>
+
+            <h3 class="subsection-title">Setting Up Your Gloves</h3>
+
+            <h4 class="sub-subsection-title">Bluetooth Connection</h4>
+            <ol>
+                <li>Navigate to Settings (gear icon in the top right of the app)</li>
+                <li>Under “Connection”, check for the “GloveGuide Pair” connection status</li>
+            </ol>
+            <ul>
+                <li>If it’s showing “Connected”, then the gloves are already paired to the app</li>
+                <li>If it’s showing "Disconnected”, tap the blue “Connect Gloves” button.
+                    <ul>
+                        <li>Search for the GloveGuide device and click on it</li>
+                        <li>Once connected, the status will update to “Connected”</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Automatic Reconnection</h4>
+            <p>After the initial pairing, your phone will remember the GloveGuide device. Future connections happen automatically when:</p>
+            <ul>
+                <li>The gloves are powered on</li>
+                <li>The gloves are within Bluetooth range</li>
+                <li>Bluetooth is enabled on your phone</li>
+            </ul>
+        </div>
+
+        <div class="content-section" id="user-manual">
+            <h2 class="section-title">Navigation App User Manual</h2>
+            
+            <div class="image-center">
+                <img src="../images/logo-glove-guide-home.jpg" alt="Glove Guide Logo" style="width: 400px;">
+            </div>
+
+            <h4 class="sub-subsection-title">Table of Contents</h4>
+            <ul>
+                <li>Getting Started</li>
+                <li>Setting Up Your Gloves</li>
+                <li>Main Navigation Interface</li>
+                <li>Searching for Destinations</li>
+                <li>Selecting Navigation Methods</li>
+                <li>Navigating with the App</li>
+                <li>Understanding Haptic Feedback</li>
+                <li>Configuring Settings</li>
+                <li>Ending Your Journey</li>
+                <li>Menu Layout</li>
+                <li>Technical Requirements</li>
+                <li>Troubleshooting</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Getting Started</h4>
+            <p><strong>About Glove Guide</strong></p>
+            <p>Glove Guide is a haptic navigation system designed to enhance safety for cyclists and pedestrians during urban mobility. The app uses Bluetooth-connected gloves to provide hands-free, eyes-free navigation through vibration patterns.</p>
+
+            <p><strong>App Installation</strong></p>
+            <p>There are currently two ways of obtaining the application:</p>
+            <ul>
+                <li>A direct installation of the software from a desktop or laptop to the phone</li>
+                <li>Using TestFlight</li>
+            </ul>
+
+            <p><strong>First Launch</strong></p>
+            <ul>
+                <li>Open the Glove Guide app</li>
+                <li>Allow location permissions when prompted</li>
+                <li>The app will display a map centered on your current location</li>
+                <li>Notice the “Glove Disconnected” status at the bottom - you’ll need to connect your gloves as shown in the following steps (See “Setting Up Your Gloves”)</li>
+            </ul>
+            <p>When you open the app for the first time, you’ll see the main map screen with your current location displayed on it.</p>
+
+            <p><strong>Main Interface Elements</strong></p>
+            <ul>
+                <li>App Logo: "gloveguide" branding at the top center</li>
+                <li>Menu Button ( ≡ ): Top left corner for accessing app menu</li>
+                <li>Settings Gear (⚙️): Top right corner for quick settings access</li>
+                <li>Map Display: Shows your location with landmarks and points of interest</li>
+                <li>Search Bar: Bottom of screen reading "Search Here"</li>
+                <li>Connection Status: “Glove Disconnected” indicator (Changes when connected)</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Setting Up Your Gloves</h4>
+            <p><strong>Bluetooth Connection</strong></p>
+            <ul>
+                <li>Navigate to Settings (gear icon in the top right of the app)</li>
+                <li>Under “Connection”, check for the “GloveGuide Pair” connection status</li>
+                <li>If it’s showing “Connected”, then the gloves are already paired to the app</li>
+                <li>If it’s showing "Disconnected”, tap the blue “Connect Gloves” button.</li>
+                <li>Search for the GloveGuide device and click on it</li>
+                <li>Once connected, the status will update to “Connected”</li>
+            </ul>
+
+            <p><strong>Automatic Reconnection</strong></p>
+            <p>After the initial pairing, your phone will remember the GloveGuide device. Future connections happen automatically when:</p>
+            <ul>
+                <li>The gloves are powered on</li>
+                <li>The gloves are within Bluetooth range</li>
+                <li>Bluetooth is enabled on your phone</li>
+            </ul>
+
+            <p><strong>Important Note:</strong> The gloves must be charged and within Bluetooth range</p>
+
+            <h4 class="sub-subsection-title">Main Navigation Interface</h4>
+            <p><strong>Map Overview</strong></p>
+            <p>The app displays a detailed map of your surroundings featuring:</p>
+            <ul>
+                <li>Your location: Blue dot marking current position</li>
+                <li>Landmarks: Various points of interests marked with icons:
+                    <ul>
+                        <li>Parks/Recreational places (Green icons)</li>
+                        <li>Transit stations (Blue icons)</li>
+                        <li>Restaurants (Orange icons)</li>
+                        <li>Shopping areas (Yellow icons)</li>
+                        <li>Entertainment/Art (Pink icons)</li>
+                        <li>Hospitals, Medical stores (Red icons)</li>
+                        <li>Hotels (Purple icons)</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Searching for Destinations</h4>
+            <p><strong>Using the Touch Map function</strong></p>
+            <p><strong>Step 1:</strong> Find your destination on the map</p>
+            <p><strong>Step 2:</strong> Tap/Touch the location on the map</p>
+            <p><strong>Step 3:</strong> Start Navigation</p>
+            <ul>
+                <li>Select your navigation mode</li>
+                <li>ETA, duration, and distance will be shown</li>
+                <li>Press Green “Start Navigation” button</li>
+            </ul>
+            <p><strong>Step 4:</strong> The map will center on your selection and navigation is started</p>
+
+            <p><strong>Using the Search Function</strong></p>
+            <p><strong>Step 1: Access the Search Bar</strong></p>
+            <p>Tap the search bar at the bottom of the screen</p>
+            <p><strong>Step 2: Search for Locations</strong></p>
+            <ul>
+                <li>Type your destination (e.g. “McGill”)</li>
+                <li>View search suggestions that appear:
+                    <ul>
+                        <li>Recent Searches</li>
+                        <li>Nearby Locations</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Step 3:</strong> Select your destination from the list</p>
+            <p><strong>Step 4:</strong> The map will center on your selection and navigation is started</p>
+
+            <h4 class="sub-subsection-title">Selecting Transportation Methods</h4>
+            <p><strong>Available Modes</strong></p>
+            <p><strong>Cycling Mode</strong></p>
+            <ul>
+                <li>Black button with bicycle icon</li>
+                <li>Routes through bike-friendly paths</li>
+            </ul>
+            <p><strong>Walking Mode</strong></p>
+            <ul>
+                <li>Blue button with walking figure icon</li>
+                <li>Shows Walking routes</li>
+            </ul>
+
+            <p><strong>Mode Selection Process</strong></p>
+            <ul>
+                <li>After choosing a destination, the mode selection overlay appear</li>
+                <li>Select either “Walking” or “Cycling”</li>
+                <li>The app calculates appropriate route</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Navigating with the App</h4>
+            <p><strong>Starting Navigation</strong></p>
+            <p>Press the Start Navigation button</p>
+            <p>Once navigation begins, you’ll see:</p>
+            <ul>
+                <li>Route path: Blue line showing your route on the map</li>
+                <li>Current location: Blue dot tracking your movement</li>
+                <li>Destination pin: Red pin marking your end point</li>
+                <li>Navigation cards (Bottom of screen)
+                    <ul>
+                        <li>ETA (Estimated Time of Arrival): e.g., "4:08 PM"</li>
+                        <li>Time Left: e.g., "10 min"</li>
+                        <li>Distance: e.g., "1.6 mi” or “800 ft"</li>
+                    </ul>
+                </li>
+                <li>Stop Navigation button: Red button at the bottom to end navigation</li>
+            </ul>
+
+            <p><strong>During Your Journey</strong></p>
+            <ul>
+                <li>The app continuously updates your position</li>
+                <li>Gloves vibrate for upcoming turns (if connected)</li>
+                <li>Time and distance automatically update as you travel</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Understanding Haptic Feedback</h4>
+            <p><strong>How it works</strong></p>
+            <p>Left gloves vibrate for left turns, right gloves vibrate for right turns.</p>
+            <p>The haptic system provides intuitive navigation without looking at your phone:</p>
+            <ul>
+                <li>Vibrations occur before intersections based on your lead time settings</li>
+                <li>Intensity can be progressive (getting stronger as you approach the turn)</li>
+                <li>Both gloves may vibrate for special alerts (arrival, rerouting)</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Configuring Settings</h4>
+            <p><strong>Accessing Settings</strong></p>
+            <ul>
+                <li>Tap the gear icon in the top right corner</li>
+                <li>The settings screen opens with multiple configuration options</li>
+            </ul>
+
+            <p><strong>Haptic Settings</strong></p>
+            <p><strong>Haptic Intensity</strong></p>
+            <ul>
+                <li>Buttons for selecting 1 or 2 vibration motors</li>
+                <li>Default setting: 1</li>
+                <li>Controls the strength of vibration feedback</li>
+            </ul>
+
+            <p><strong>Test Connection</strong></p>
+            <ul>
+                <li>Buttons for testing left and right vibration after pairing</li>
+                <li>Clicking on them will activate the haptics</li>
+            </ul>
+
+            <p><strong>Lead Time</strong></p>
+            <ul>
+                <li>Set how early you receive turn vibrations</li>
+                <li>Range: 0-20 seconds before the turn</li>
+                <li>Adjusts based on your speed and reaction preferences</li>
+            </ul>
+
+            <p><strong>Connection</strong></p>
+            <ul>
+                <li>Device Status: Shows “Connected” or “Disconnected”</li>
+                <li>Connect Button: Blue button to initiate pairing</li>
+            </ul>
+
+            <p><strong>Navigation Preferences</strong></p>
+            <p><strong>Default Transportation Mode</strong></p>
+            <ul>
+                <li>Choose between Walking or Cycling</li>
+                <li>Sets your preferred mode for all new routes</li>
+                <li>Can be changed per journey</li>
+            </ul>
+
+            <p><strong>About Section</strong></p>
+            <ul>
+                <li>Version: 1.0.0</li>
+                <li>App name: Glove Guide</li>
+                <li>General information about the app.</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Ending Your Journey</h4>
+            <p><strong>Arrival at Destination</strong></p>
+            <p>When you reach your destination:</p>
+            <ul>
+                <li>A popup appears: "END of Navigation"</li>
+                <li>Message displays: "You have reached your destination"</li>
+                <li>Green checkmark confirms arrival</li>
+                <li>Two options appear:
+                    <ul>
+                        <li>OK (blue button): Closes navigation and returns to map</li>
+                        <li>Cancel (outlined button): Returns to active navigation</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Manual Navigation Stop</strong></p>
+            <p>To end navigation before reaching destination:</p>
+            <ul>
+                <li>Tap red "STOP NAVIGATION" button at bottom</li>
+                <li>Confirm your choice in the popup</li>
+                <li>Returns to main map view</li>
+            </ul>
+
+            <p><strong>Post-Navigation</strong></p>
+            <p>After ending navigation:</p>
+            <ul>
+                <li>Map returns to exploration mode</li>
+                <li>Glove connection remains active</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Menu Layout</h4>
+            <p>Quick Navigation between app menus for general information about the app</p>
+            <p>Accessed by clicking the Menu Button ( ≡ ) in the top left corner of the app</p>
+
+            <p><strong>About</strong></p>
+            <ul>
+                <li>Problem Statement</li>
+                <li>Our Solution</li>
+                <li>Key Features</li>
+            </ul>
+
+            <p><strong>Terms and Conditions</strong></p>
+            <ul>
+                <li>Acceptance of Terms</li>
+                <li>Use of Service</li>
+                <li>Safety Disclaimer</li>
+                <li>Bluetooth Connectivity</li>
+            </ul>
+
+            <p><strong>Support</strong></p>
+            <ul>
+                <li>Developer Contact Information</li>
+                <li>Frequently asked questions</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Technical Requirements</h4>
+            <p><strong>System Requirements</strong></p>
+            <ul>
+                <li>iOS or Android device with Bluetooth capability</li>
+                <li>Location Services enabled</li>
+                <li>Internet connection for map data</li>
+                <li>Compatible Bluetooth haptic gloves</li>
+            </ul>
+
+            <p><strong>Permissions Required</strong></p>
+            <ul>
+                <li>Location: For navigation and current position</li>
+                <li>Bluetooth: For glove connectivity</li>
+                <li>Internet: For map data and route calculation</li>
+            </ul>
+
+            <h4 class="sub-subsection-title">Troubleshooting</h4>
+            <p><strong>Connection Issues</strong></p>
+            <ul>
+                <li><strong>Problem: Gloves won't connect</strong>
+                    <ul>
+                        <li>Solution: Ensure gloves are charged, in pairing mode, and within range</li>
+                        <li>Check Bluetooth is enabled on your device</li>
+                        <li>Restart both app and gloves if needed</li>
+                    </ul>
+                </li>
+                <li><strong>Problem: Connection drops frequently</strong>
+                    <ul>
+                        <li>Solution: Keep phone within Bluetooth range</li>
+                        <li>Check glove battery level</li>
+                        <li>Minimize interference from other Bluetooth devices</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>Navigation Issues</strong></p>
+            <ul>
+                <li><strong>Problem: Route seems incorrect</strong>
+                    <ul>
+                        <li>Solution: Verify you've selected the correct transport mode</li>
+                        <li>Check your destination address is accurate</li>
+                        <li>Ensure location services have precise permissions</li>
+                    </ul>
+                </li>
+                <li><strong>Problem: No haptic feedback during turns</strong>
+                    <ul>
+                        <li>Solution: Check vibration intensity isn't set to 0%</li>
+                        <li>Verify gloves are connected (check status bar)</li>
+                        <li>Test vibration in Settings to ensure gloves are working</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p><strong>App Performance</strong></p>
+            <ul>
+                <li><strong>Problem: Map not loading</strong>
+                    <ul>
+                        <li>Solution: Check internet connection</li>
+                        <li>Allow app to use cellular data</li>
+                        <li>Clear app cache if necessary</li>
+                    </ul>
+                </li>
+                <li><strong>Problem: Location not updating</strong>
+                    <ul>
+                        <li>Solution: Enable "Precise: On" in location permissions</li>
+                        <li>Ensure good GPS signal (may be weak indoors)</li>
+                        <li>Restart the app</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content-section" id="project-reflection">
+            <h2 class="section-title">Project Reflection</h2>
+            
+            <h3 class="subsection-title">Problem Scenario</h3>
+            <p>At the start of the semester, our observations of cyclists, pedestrians, and runners revealed a clear issue: users frequently relied on smartphone screens for navigation, checking their devices far more often than necessary. This behavior fragmented attention in environments that demand constant awareness, creating safety risks. Our problem scenario emerged from this pattern: how can we support urban mobility without forcing users into continuous visual or auditory engagement with their phones?</p>
+            <p>As the project progressed, our understanding of this scenario became more refined. What initially appeared to be a simple distraction problem was revealed to be part of a broader cycle: frequent phone checking lowered situational awareness, which in turn increased users’ uncertainty and anxiety about missing navigation cues, besides simply creating safety risks. Our prototype directly addresses both aspects by providing a hands-free, glance-free navigation experience that keeps users engaged with their environment while also reducing reliance on the phone. By delivering unobtrusive, timely haptic cues, the system supports confident, continuous movement without triggering the habitual need to check a screen.</p>
+
+            <h3 class="subsection-title">Usability Goals</h3>
+            <p>As our understanding of the navigation problem deepened, our usability goals sharpened from broad intentions into clear, measurable expectations grounded in observed user behavior. Early findings about frequent phone checking and cognitive strain led us to prioritize reducing visual distraction and maintaining users’ attention on their environment. These priorities evolved into a focused set of objectives: the system should be easy to learn, accurate in its communication, and effortless to use while moving.</p>
+            <p>Concepts such as calm interaction, efficiency, effectiveness, learnability, and user satisfaction guided our design choices and evaluation methods. We expected users to interpret haptic cues quickly, respond naturally with minimal instruction, and complete tasks without needing to look at their phones. Throughout, we emphasized unobtrusiveness—ensuring the technology supported navigation without disrupting the user’s flow. Together, these usability goals created a clear framework for how the system should function, how users should experience it, and how we assessed its success in addressing the original problem scenario.</p>
+
+            <h3 class="subsection-title">Connection to the Beta Prototype</h3>
+            <p>The Beta prototype brings together our semester-long development by directly addressing the original <strong>problem scenario</strong>—users’ anxiety-driven phone checking and reduced situational awareness during navigation—and operationalizing the <strong>usability goals</strong> that emerged from it.</p>
+            <p>By delivering navigation through haptic cues alone, the system reduces the need for visual attention (<strong>reducing distraction</strong>) and keeps users focused on their environment (<strong>supporting situational awareness</strong>). This directly counters the cycle of uncertainty that previously caused frequent screen checks.</p>
+            <p>The prototype also reflects our goals of <strong>learnability</strong> and <strong>effectiveness</strong>: the haptic patterns are simple, distinct, and designed to be understood within seconds, allowing users to interpret them reliably without practice. Its unobtrusive wrist-based interaction reinforces the goal of <strong>calm interaction</strong>, providing guidance without interrupting the user’s flow or demanding conscious effort.</p>
+            <p>In terms of <strong>efficiency</strong> and <strong>user satisfaction</strong>, the Beta version integrates consistent timing, responsive cues, and a more polished physical form factor, making the navigation experience smoother and more predictable. These qualities help transform the original scenario, characterized by distraction and uncertainty, into one where users can move confidently without visually or auditory relying on their phone.</p>
+            <p>Taken together, the Beta prototype demonstrates how the system has matured to meet the usability goals we established and to meaningfully improve the issues identified in the initial problem scenario.</p>
+        </div>
+
+        <div class="content-section" id="conclusion">
+            <h2 class="section-title">Conclusion</h2>
+            <p>Across the semester, our project progressed from identifying a problem rooted in distraction and uncertainty to delivering a polished Beta system that offers clear, hands-free navigation support. Each iteration—reflected in our design evolution, prototype revisions, and evolving usability goals—helped align the product more closely with the needs of real users. The final prototype, supported by an improved user manual and installation guide, demonstrates a mature and cohesive solution that reduces cognitive burden, enhances situational awareness, and integrates smoothly into everyday movement. Together, these elements represent the culmination of our design process and a strong foundation for future refinement and further testing.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>McGill University – ECSE Design Project (Fall 2025)</p>
+            <p>Group G: Kevin Wu, Mohammad Adnaan, William Goyens</p>
+        </div>
+    </footer>
+</body>
+
+</html>
