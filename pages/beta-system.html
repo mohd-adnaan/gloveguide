@@ -297,17 +297,63 @@
         }
 
         /* Image Styling */
-        .image-center {
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid-two {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem auto;
+            max-width: 900px;
+            justify-content: center;
+        }
+
+        .image-single {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .image-single .image-card {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .caption {
+            padding: 1rem;
+            font-size: 0.95rem;
+            color: var(--gray);
+            text-align: center;
+            background: var(--light-gray);
+        }
+        .image-center-logo {
             display: flex;
             justify-content: center;
             margin: 2rem 0;
-        }
-        
-        .image-center img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: var(--shadow-sm);
         }
 
         /* Footer */
@@ -599,7 +645,7 @@
         <div class="content-section" id="user-manual">
             <h2 class="section-title">Navigation App User Manual</h2>
             
-            <div class="image-center">
+            <div class="image-center-logo">
                 <img src="../images/logo-glove-guide-home.jpg" alt="Glove Guide Logo" style="width: 400px;">
             </div>
 
@@ -649,6 +695,17 @@
                 <li>Connection Status: “Glove Disconnected” indicator (Changes when connected)</li>
             </ul>
 
+            <div class="image-grid-two">
+                <div class="image-card">
+                    <img src="../images/beta-system/image_1.png" alt="Getting Started" />
+                    <p class="caption">Allow Location Permission</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/beta-system/image2.png" alt="Getting Started" />
+                    <p class="caption">Getting Started with Glove Guide</p>
+                </div>
+            </div>
+
             <h4 class="sub-subsection-title">Setting Up Your Gloves</h4>
             <p><strong>Bluetooth Connection</strong></p>
             <ul>
@@ -659,6 +716,17 @@
                 <li>Search for the GloveGuide device and click on it</li>
                 <li>Once connected, the status will update to “Connected”</li>
             </ul>
+
+            <div class="image-grid-two">
+                <div class="image-card">
+                    <img src="../images/beta-system/setting.jpeg" alt="Setting" />
+                    <p class="caption"> Settings</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/beta-system/connect_gg.jpeg" alt="Connect to GloveGuide Pair" />
+                    <p class="caption">Connect to GloveGuide Pair</p>
+                </div>
+            </div>
 
             <p><strong>Automatic Reconnection</strong></p>
             <p>After the initial pairing, your phone will remember the GloveGuide device. Future connections happen automatically when:</p>
@@ -700,6 +768,17 @@
             </ul>
             <p><strong>Step 4:</strong> The map will center on your selection and navigation is started</p>
 
+            <div class="image-grid-two">
+                <div class="image-card">
+                    <img src="../images/beta-system/starting_page.jpeg"alt="Starting Page" />
+                    <p class="caption">Starting Page</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/beta-system/tap_touch.jpeg" alt="Tap/Touch the location on the map" />
+                    <p class="caption">Tap/Touch the location on the map</p>
+                </div>
+            </div>
+
             <p><strong>Using the Search Function</strong></p>
             <p><strong>Step 1: Access the Search Bar</strong></p>
             <p>Tap the search bar at the bottom of the screen</p>
@@ -715,6 +794,17 @@
             </ul>
             <p><strong>Step 3:</strong> Select your destination from the list</p>
             <p><strong>Step 4:</strong> The map will center on your selection and navigation is started</p>
+
+                        <div class="image-grid-two">
+                <div class="image-card">
+                    <img src="../images/beta-system/search.png"alt="Search Bar" />
+                    <p class="caption">Type your destination (e.g. “McGill”)</p>
+                </div>
+                <div class="image-card">
+                    <img src="../images/beta-system/search_result_point.PNG" alt="map will center on your selection " />
+                    <p class="caption">Map will center on your selection </p>
+                </div>
+            </div>
 
             <h4 class="sub-subsection-title">Selecting Transportation Methods</h4>
             <p><strong>Available Modes</strong></p>
@@ -753,6 +843,14 @@
                 </li>
                 <li>Stop Navigation button: Red button at the bottom to end navigation</li>
             </ul>
+            
+            <div class="image-single">
+                <div class="image-card">
+                    <img src="../images/beta-system/stop_navigation.jpg"alt="Navigation begins" />
+                    <p class="caption">Navigation begins</p>
+                </div>
+            </div>
+
 
             <p><strong>During Your Journey</strong></p>
             <ul>
@@ -785,6 +883,17 @@
                 <li>Default setting: 1</li>
                 <li>Controls the strength of vibration feedback</li>
             </ul>
+
+            <div class="image-grid-two">
+                    <div class="image-card">
+                        <img src="../images/beta-system/connected_gg_1motor.jpeg" alt="Connected to GloveGuide Pair" />
+                        <p class="caption">Connected to GloveGuide Pair Default Setting </p>
+                    </div>
+                <div class="image-card">
+                        <img src="../images/beta-system/connected_gg_2motor.jpeg" alt="Connected GLoveGuide Pair" />
+                        <p class="caption">Connected to GloveGuide Pair with 2 motors</p>
+                    </div>
+                </div>
 
             <p><strong>Test Connection</strong></p>
             <ul>
@@ -834,6 +943,13 @@
                     </ul>
                 </li>
             </ul>
+            <div class="image-single">
+                <div class="image-card">
+                    <img src="../images/beta-system/end_navigation.jpg"alt="End of Navigation" />
+                    <p class="caption">End of Navigation</p>
+                </div>
+            </div>
+
 
             <p><strong>Manual Navigation Stop</strong></p>
             <p>To end navigation before reaching destination:</p>
